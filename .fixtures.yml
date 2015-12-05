@@ -1,0 +1,10 @@
+fixtures:
+  forge_modules:
+    stdlib: 'puppetlabs-stdlib'
+    git: 'puppetlabs-git'
+    vcsrepo: 'puppetlabs-vcsrepo'
+    epel: 'stahnma-epel'
+    python: 'stankevich-python'
+    mysql: 'puppetlabs-mysql'
+  symlinks:
+    patchwork: "#{source_dir}"
