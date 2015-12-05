@@ -1,5 +1,6 @@
 # patchwork
 
+
 ## Overview
 
 A Puppet module for managing deployments of Patchwork - the web-based
@@ -13,6 +14,8 @@ tree, or add the following to your `Puppetfile`:
   mod 'bramwelt-patchwork'
 
 A node should then be assigned the relevant patchwork classes.
+
+  class { 'patchwork': }
 
 ### patchwork
 
