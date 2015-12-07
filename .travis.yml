@@ -2,7 +2,6 @@
 sudo: false
 language: ruby
 bundler_args: --without system_tests
-before_script: 'virtualenv --version'
 script: "bundle exec rake validate lint spec SPEC_OPTS='--format documentation'"
 
 rvm:
