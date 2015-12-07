@@ -3,7 +3,7 @@ describe 'patchwork', :type => 'class' do
   let (:facts) do { 
       :osfamily                  => 'RedHat',
       :operatingsystem           => 'CentOS',
-      :operatingsystemmajversion => '7',
+      :operatingsystemmajrelease => '7',
       :ipaddress                 => '192.168.0.2',
       :fqdn                      => 'patchwork.example.com',
       :hostname                  => 'patchwork',
