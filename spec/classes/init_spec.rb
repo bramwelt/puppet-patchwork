@@ -1,12 +1,16 @@
 require 'spec_helper'
 describe 'patchwork', :type => 'class' do
+  let (:facts) do { 
+      :osfamily                  => 'RedHat',
+      :operatingsystem           => 'CentOS',
+      :operatingsystemmajversion => '7',
+      :ipaddress                 => '192.168.0.2',
+      :fqdn                      => 'patchwork.example.com',
+      :hostname                  => 'patchwork',
+  }
+  end
 
   context 'with defaults for all parameters' do
-    let (:facts) do { 
-        :osfamily => 'RedHat',
-        :operatingsystem => 'CentOS',
-    }
-    end
 
     it { should contain_class('patchwork') }
 
