@@ -23,8 +23,14 @@
 #  limitations under the License.
 #
 class patchwork::params {
-  $location    = '/opt/patchwork'
-  $virtualenv  = "${location}/venv"
-  $version     = 'master'
-  $source_repo = 'git://github.com/getpatchwork/patchwork'
+  $install_dir      = '/opt/patchwork'
+  $virtualenv_dir   = '/opt/patchwork/venv'
+  $version          = 'master'
+  $source_repo      = 'git://github.com/getpatchwork/patchwork'
+  $database_name    = 'patchwork'
+  $database_host    = 'localhost'
+  $database_user    = 'patchwork'
+  $database_pass    = 'patchwork'
+  $database_tag     = 'mysql-patchwork'
+  $collect_exported = false
 }

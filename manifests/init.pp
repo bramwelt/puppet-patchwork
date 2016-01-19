@@ -78,62 +78,44 @@
 #  limitations under the License.
 #
 class patchwork (
-  $location          = $patchwork::params::location,
-  $virtualenv_path   = $patchwork::params::virtualenv,
+  $install_dir       = $patchwork::params::install_dir,
+  $virtualenv_dir    = $patchwork::params::virtualenv_dir,
   $version           = $patchwork::params::version,
   $source_repo       = $patchwork::params::source_repo,
-  $manage_git        = true,
-  $manage_python     = true,
-  $manage_database   = true,
+  $git_manage        = true,
+  $python_manage     = true,
+  $database_manage   = true,
+  # Database settings
+  $database_name     = $patchwork::params::database_name,
+  $database_host     = $patchwork::params::database_host,
+  $database_user     = $patchwork::params::database_user,
+  $database_pass     = $patchwork::params::database_pass,
+  $database_tag      = $patchwork::params::database_tag,
+  $collect_exported  = $patchwork::params::collect_exported,
 ) inherits patchwork::params {
 
-  validate_string($location)
-  validate_string($virtualenv_path)
+  validate_string($install_dir)
+  validate_string($virtualenv_dir)
   validate_string($version)
   validate_string($source_repo)
 
-  validate_bool($manage_git)
-  validate_bool($manage_python)
-  validate_bool($manage_database)
+  validate_bool($git_manage)
+  validate_bool($python_manage)
+  validate_bool($database_manage)
 
-  if ($manage_git) {
-    include ::git
-  }
+  include 'patchwork::install'
+  include 'patchwork::database::mysql'
+  include 'patchwork::config'
+  include 'patchwork::cron'
 
-  if ($manage_python) {
-    class { '::python':
-      gunicorn => 'absent',
-    }
-  }
+  anchor { 'patchwork:begin': }
+  anchor { 'patchwork:end': }
 
-  class { 'patchwork::database::mysql':
-    manage_database => $manage_database,
-  }
+  Anchor['patchwork:begin'] ->
+    Class['patchwork::install'] ->
+    Class['patchwork::database::mysql'] ->
+    Class['patchwork::config'] ->
+    Class['patchwork::cron'] ->
+  Anchor['patchwork:end']
 
-  # If 'latest' version is given the repo will track master and keep up
-  # to date; provided patchwork uses master as their development branch
-  if ($version == 'latest') {
-      $vcsrepo_ensure = 'latest'
-      $revision = 'master'
-  } else {
-      $vcsrepo_ensure = 'present'
-      $revision = $version
-  }
-
-  vcsrepo { $location:
-    ensure   => $vcsrepo_ensure,
-    provider => 'git',
-    source   => $source_repo,
-    revision => $revision,
-  }
-
-  # Install requirements.txt
-  python::virtualenv { $virtualenv_path:
-    requirements => "${location}/doc/requirements-prod.txt",
-  }
-
-  class { 'patchwork::cron':
-    location   => $location,
-    virtualenv => $virtualenv_path,
-  }
 }

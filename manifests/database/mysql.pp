@@ -23,28 +23,33 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-class patchwork::database::mysql (
-    $database        = 'patchwork',
-    $host            = '127.0.0.1',
-    $port            = 3306,
-    $username        = 'patchwork',
-    $password        = 'patchwork',
-    $manage_database = true,
-    $database_tag    = 'mysql-database',
-) {
+class patchwork::database::mysql {
+  include patchwork
 
-  if ($manage_database) {
-    class { '::mysql::server': }
-    class { '::mysql::bindings':
-      python_enable => true,
+  validate_bool($patchwork::collect_exported)
+  if ($patchwork::collect_exported) {
+    @@mysql::db { "patchwork_${::fqdn}":
+      user     => $patchwork::database_user,
+      password => $patchwork::database_pass,
+      dbname   => $patchwork::database_name,
+      host     => $patchwork::database_host,
+      tag      => $patchwork::database_tag,
+      before   => Exec['load defaults'],
+    }
+  } else {
+    mysql::db { 'patchwork':
+      ensure   => 'present',
+      user     => $patchwork::database_user,
+      password => $patchwork::database_pass,
+      host     => $patchwork::database_host,
+      before   => Exec['load defaults'],
     }
   }
 
-  @@mysql::db { "${database}_${::fqdn}":
-    user     => $username,
-    password => $password,
-    dbname   => $database,
-    host     => $::ipaddress,
-    tag      => $database_tag,
+  exec { 'load defaults':
+    command => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
+    cwd     => $patchwork::install_dir,
+    creates => '/foo',
   }
+
 }

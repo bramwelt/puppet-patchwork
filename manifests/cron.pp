@@ -31,15 +31,13 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-class patchwork::cron (
-  $virtualenv,
-  $location,
-) {
+class patchwork::cron {
 
   cron { 'patchwork':
     ensure      => present,
-    command     => '${virtualenv}/bin/python ${location}/manage.py cron',
-    environment => 'PATH=/usr/bin/:/usr/local/bin:/usr/sbin', # Just an example
+    command     => "${patchwork::virtualenv_dir}/bin/python ${patchwork::install_dir}/manage.py cron",
+    environment => 'PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
     minute      => '*/10',
   }
+
 }

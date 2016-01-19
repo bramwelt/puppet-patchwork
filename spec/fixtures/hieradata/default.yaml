@@ -1,0 +1,3 @@
+---
+patchwork::collect_exported: false
+patchwork::install_dir: /opt/patchwork
