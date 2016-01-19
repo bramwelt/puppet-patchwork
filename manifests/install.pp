@@ -41,7 +41,10 @@ class patchwork::install {
 
   if ($patchwork::python_manage) {
     class { '::python':
-      gunicorn => false,
+      version    => 'system',
+      pip        => true,
+      virtualenv => true,
+      gunicorn   => false,
     }
   }
 
