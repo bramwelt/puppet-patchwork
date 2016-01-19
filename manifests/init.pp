@@ -103,18 +103,18 @@ class patchwork (
   validate_bool($python_manage)
   validate_bool($database_manage)
 
+  anchor { 'patchwork:begin': }
+  anchor { 'patchwork:end': }
+
   include 'patchwork::install'
   include 'patchwork::database::mysql'
   include 'patchwork::config'
   include 'patchwork::cron'
 
-  anchor { 'patchwork:begin': }
-  anchor { 'patchwork:end': }
-
   Anchor['patchwork:begin'] ->
     Class['patchwork::install'] ->
-    Class['patchwork::database::mysql'] ->
     Class['patchwork::config'] ->
+    Class['patchwork::database::mysql'] ->
     Class['patchwork::cron'] ->
   Anchor['patchwork:end']
 
