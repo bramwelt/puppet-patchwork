@@ -41,7 +41,7 @@ class patchwork::install {
 
   if ($patchwork::python_manage) {
     class { '::python':
-      gunicorn => 'absent',
+      gunicorn => false,
     }
   }
 

@@ -4,7 +4,9 @@ fixtures:
     git: 'puppetlabs-git'
     vcsrepo: 'puppetlabs-vcsrepo'
     epel: 'stahnma-epel'
-    python: 'stankevich-python'
+    python: 
+      repo: 'stankevich-python'
+      ref: '1.9.4'
     mysql: 'puppetlabs-mysql'
   symlinks:
     patchwork: "#{source_dir}"
