@@ -9,7 +9,7 @@ rvm:
 
 env:
   matrix:
-    - PUPPET_VERSION="~> 2.7.0"
+    - PUPPET_VERSION="~> 3.1.0"
     - PUPPET_VERSION="~> 3.8.0"
     - PUPPET_VERSION="~> 4.3.0"
 
