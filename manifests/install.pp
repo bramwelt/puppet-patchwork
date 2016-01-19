@@ -79,7 +79,7 @@ class patchwork::install {
 
   # Creat a virtualenv and install patchwork's requirements.txt
   python::virtualenv { $patchwork::virtualenv_dir:
-    requirements => "${patchwork::install_dir}/doc/requirements-prod.txt",
+    requirements => "${patchwork::install_dir}/docs/requirements-prod.txt",
     require      => [
       Class['python'],
       Vcsrepo[$patchwork::install_dir],
