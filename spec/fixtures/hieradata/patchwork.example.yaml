@@ -1,2 +1,3 @@
 ---
 patchwork::collect_exported: true
+patchwork::version: 'v1.0.0'
