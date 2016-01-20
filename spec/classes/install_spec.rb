@@ -6,6 +6,7 @@ describe 'patchwork', :type => 'class' do
       it { should contain_class('git') } 
       it { should contain_class('python') } 
       it { should contain_class('mysql::server') } 
+      it { should contain_class('mysql::bindings::daemon_dev') }
       it { should contain_class('mysql::bindings')
         .with({
           'python_enable' => 'true'

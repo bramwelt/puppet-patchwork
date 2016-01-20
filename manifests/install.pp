@@ -51,9 +51,9 @@ class patchwork::install {
 
   if ($patchwork::database_manage) {
     class { '::mysql::server': }
+    class { '::mysql::bindings::daemon_dev': }
     class { '::mysql::bindings':
       python_enable => true,
-      require       => Class['::mysql::server'],
     }
   }
 
