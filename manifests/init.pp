@@ -94,6 +94,7 @@ class patchwork (
   $database_pass     = $patchwork::params::database_pass,
   $database_tag      = $patchwork::params::database_tag,
   $collect_exported  = $patchwork::params::collect_exported,
+  $cron_minutes      = $patchwork::params::cron_minutes,
 ) inherits patchwork::params {
 
   validate_string($install_dir)

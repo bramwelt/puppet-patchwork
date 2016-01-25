@@ -35,4 +35,5 @@ class patchwork::params {
   $database_pass    = 'patchwork'
   $database_tag     = 'mysql-patchwork'
   $collect_exported = false
+  $cron_minutes     = 10
 }

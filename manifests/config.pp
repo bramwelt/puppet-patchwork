@@ -42,12 +42,13 @@
 #  limitations under the License.
 #
 class patchwork::config (
-  $secret_key        = undef,
-  $time_zone         = 'Etc/UCT',
-  $language_code     = 'en_US',
-  $patches_per_page  = '100',
-  $force_https_links = 'False',
-  $from_email        = 'Patchwork <patchwork@patchwork.example.com>',
+  $secret_key         = undef,
+  $time_zone          = 'Etc/UTC',
+  $language_code      = 'en_US',
+  $patches_per_page   = '100',
+  $force_https_links  = 'False',
+  $from_email         = 'Patchwork <patchwork@patchwork.example.com>',
+  $notification_delay = $patchwork::cron_minutes,
 ) inherits patchwork {
 
   file { "${patchwork::install_dir}/patchwork/settings/production.py":
