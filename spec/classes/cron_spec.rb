@@ -8,6 +8,8 @@ describe 'patchwork', :type => 'class' do
     }}
     it { should compile }
     it { should contain_cron('patchwork').with(
-      'command' => '/fakevirtualenv/bin/python /foo/lib/manage.py cron')}
+      'command' => '/fakevirtualenv/bin/python /foo/lib/manage.py cron',
+      'user'    => 'patchwork',
+    )}
   end
 end

@@ -26,6 +26,8 @@ class patchwork::params {
   $install_dir      = '/opt/patchwork'
   $virtualenv_dir   = '/opt/patchwork/venv'
   $version          = 'master'
+  $user             = 'patchwork'
+  $group            = 'patchwork'
   $source_repo      = 'git://github.com/getpatchwork/patchwork'
   $database_name    = 'patchwork'
   $database_host    = 'localhost'

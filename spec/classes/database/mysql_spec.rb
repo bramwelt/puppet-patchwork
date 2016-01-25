@@ -14,6 +14,8 @@ describe 'patchwork::database::mysql', :type => 'class' do
            }) }
     it { should contain_exec('load defaults').with({
            'command' => '/opt/patchwork/venv/bin/python manage.py loaddata default_tags default_states',
+           'user' => 'patchwork',
+           'group' => 'patchwork',
            'cwd' => '/opt/patchwork',
          }) }
   end

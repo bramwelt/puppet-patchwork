@@ -70,9 +70,19 @@ class patchwork::install {
     }
   }
 
+  user { 'patchwork':
+    ensure  => present,
+    comment => 'User for managing Patchwork',
+    name    => $patchwork::user,
+    home    => $patchwork::install_dir,
+    system  => true,
+  }
+
   vcsrepo { $patchwork::install_dir:
     ensure   => $vcsrepo_ensure,
     provider => 'git',
+    user     => $patchwork::user,
+    group    => $patchwork::group,
     source   => $patchwork::source_repo,
     revision => $revision,
   }
@@ -80,6 +90,8 @@ class patchwork::install {
   # Creat a virtualenv and install patchwork's requirements.txt
   python::virtualenv { $patchwork::virtualenv_dir:
     requirements => "${patchwork::install_dir}/docs/requirements-prod.txt",
+    owner        => $patchwork::user,
+    group        => $patchwork::group,
     require      => [
       Class['python'],
       Vcsrepo[$patchwork::install_dir],

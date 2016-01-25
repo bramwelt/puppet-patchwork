@@ -12,9 +12,19 @@ describe 'patchwork', :type => 'class' do
           'python_enable' => 'true'
         })
       } 
+      it { should contain_user('patchwork')
+           .with({
+               'ensure'  => 'present',
+               'comment' => 'User for managing Patchwork',
+               'home'    => '/opt/patchwork',
+               'system'  => true,
+           })
+      }
       it { should contain_vcsrepo('/opt/patchwork')
         .with({
           'ensure' => 'present',
+          'user'   => 'patchwork',
+          'group'  => 'patchwork',
           'source' => 'git://github.com/getpatchwork/patchwork',
           'revision' => 'master',
         })
@@ -22,6 +32,8 @@ describe 'patchwork', :type => 'class' do
       it { should contain_python__virtualenv('/opt/patchwork/venv')
         .with({
           'requirements' => '/opt/patchwork/docs/requirements-prod.txt',
+          'owner'        => 'patchwork',
+          'group'        => 'patchwork',
         })
       }
     end
@@ -34,6 +46,8 @@ describe 'patchwork', :type => 'class' do
           'ensure' => 'present',
           'source' => 'git://github.com/getpatchwork/patchwork',
           'revision' => '1.2.3',
+          'user'     => 'patchwork',
+          'group'    => 'patchwork',
         })
       }
     end
@@ -46,6 +60,8 @@ describe 'patchwork', :type => 'class' do
           'ensure' => 'latest',
           'source' => 'git://github.com/getpatchwork/patchwork',
           'revision' => 'master',
+          'user'     => 'patchwork',
+          'group'    => 'patchwork',
         })
       }
     end
@@ -58,6 +74,8 @@ describe 'patchwork', :type => 'class' do
           'ensure' => 'present',
           'source' => 'git://github.com/getpatchwork/patchwork',
           'revision' => 'v1.0.0',
+          'user'     => 'patchwork-user',
+          'group'    => 'patchwork-group',
         })
       }
     end

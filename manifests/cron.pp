@@ -37,6 +37,7 @@ class patchwork::cron {
     ensure      => present,
     command     => "${patchwork::virtualenv_dir}/bin/python ${patchwork::install_dir}/manage.py cron",
     environment => 'PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
+    user        => $patchwork::user,
     minute      => '*/10',
   }
 

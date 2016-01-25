@@ -16,6 +16,8 @@ describe 'patchwork', :type => 'class' do
     it do
       should contain_vcsrepo('/opt/patchwork').with(
         'ensure'   => 'present',
+        'user'     => 'patchwork',
+        'group'    => 'patchwork',
         'provider' => 'git',
         'source'   => 'git://github.com/getpatchwork/patchwork',
       )

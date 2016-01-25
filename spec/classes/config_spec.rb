@@ -8,6 +8,10 @@ describe 'patchwork::config', :type => 'class' do
     }}
     it { should compile }
     it { should contain_file('/opt/patchwork/patchwork/settings/production.py')
+           .with(
+               'owner' => 'patchwork',
+               'group' => 'patchwork',
+            )
            .with_content(/TIME_ZONE = 'US\/PST'/)
            .with_content(/DEFAULT_FROM_EMAIL = '<patchwork@example.com>'/)
     }

@@ -53,6 +53,8 @@ class patchwork::config (
   file { "${patchwork::install_dir}/patchwork/settings/production.py":
     ensure  => file,
     mode    => '0644',
+    owner   => $patchwork::user,
+    group   => $patchwork::group,
     content => template("${module_name}/settings.py.erb"),
   }
 

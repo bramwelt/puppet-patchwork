@@ -82,6 +82,8 @@ class patchwork (
   $virtualenv_dir    = $patchwork::params::virtualenv_dir,
   $version           = $patchwork::params::version,
   $source_repo       = $patchwork::params::source_repo,
+  $user              = $patchwork::user,
+  $group             = $patchwork::group,
   $git_manage        = true,
   $python_manage     = true,
   $database_manage   = true,

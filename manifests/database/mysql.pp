@@ -48,6 +48,8 @@ class patchwork::database::mysql {
 
   exec { 'load defaults':
     command => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
+    user    => $patchwork::user,
+    group   => $patchwork::group,
     cwd     => $patchwork::install_dir,
     creates => '/foo',
   }
