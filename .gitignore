@@ -36,3 +36,6 @@ build/
 
 # Puppet files
 /spec/fixtures/modules/
+
+# Vim Files
+*.swp
