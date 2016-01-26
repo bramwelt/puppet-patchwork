@@ -71,11 +71,12 @@ class patchwork::install {
   }
 
   user { 'patchwork':
-    ensure  => present,
-    comment => 'User for managing Patchwork',
-    name    => $patchwork::user,
-    home    => $patchwork::install_dir,
-    system  => true,
+    ensure     => present,
+    comment    => 'User for managing Patchwork',
+    name       => $patchwork::user,
+    home       => $patchwork::install_dir,
+    managehome => true,
+    system     => true,
   }
 
   vcsrepo { $patchwork::install_dir:
