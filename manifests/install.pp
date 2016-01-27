@@ -77,13 +77,18 @@ class patchwork::install {
   }
 
   user { 'patchwork':
-    ensure     => present,
-    comment    => 'User for managing Patchwork',
-    name       => $patchwork::user,
-    home       => $patchwork::install_dir,
-    shell      => '/sbin/nologin',
-    managehome => true,
-    system     => true,
+    ensure  => present,
+    comment => 'User for managing Patchwork',
+    name    => $patchwork::user,
+    home    => $patchwork::install_dir,
+    shell   => '/sbin/nologin',
+    system  => true,
+  }
+
+  file { $patchwork::install_dir:
+    ensure => 'directory',
+    owner  => $patchwork::user,
+    group  => $patchwork::group,
   }
 
   vcsrepo { $patchwork::install_dir:
@@ -93,6 +98,7 @@ class patchwork::install {
     group    => $patchwork::group,
     source   => $patchwork::source_repo,
     revision => $revision,
+    require  => File[$patchwork::install_dir],
   }
 
   # Creat a virtualenv and install patchwork's requirements.txt
