@@ -49,12 +49,12 @@ class patchwork::database::mysql {
   }
 
   exec { 'syncdb':
-    command     => "${patchwork::virtualenv_dir}/bin/python manage.py syncdb --noinput",
-    user        => $patchwork::user,
-    group       => $patchwork::group,
-    cwd         => $patchwork::install_dir,
-    require     => Python::Requirements[$patchwork::requirements],
-    notify      => Exec['load defaults'],
+    command => "${patchwork::virtualenv_dir}/bin/python manage.py syncdb --noinput",
+    user    => $patchwork::user,
+    group   => $patchwork::group,
+    cwd     => $patchwork::install_dir,
+    require => Python::Requirements[$patchwork::requirements],
+    notify  => Exec['load defaults'],
   }
 
   exec { 'load defaults':
