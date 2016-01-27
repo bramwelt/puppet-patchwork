@@ -51,7 +51,13 @@ class patchwork::install {
 
   if ($patchwork::database_manage) {
     class { '::mysql::server': }
-    class { '::mysql::bindings::daemon_dev': }
+    # Manually install mariadb-devel until mysql module updates with the code
+    # that fixes this.
+    #class { '::mysql::bindings::daemon_dev': }
+    package { 'mysql-daemon_dev':
+      ensure          => 'present',
+      name            => 'mariadb-devel',
+    }
     class { '::mysql::bindings':
       python_enable => true,
     }
