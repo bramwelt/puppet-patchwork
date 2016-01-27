@@ -55,18 +55,18 @@ class patchwork::database::mysql {
     cwd         => $patchwork::install_dir,
     noop        => true,
     refreshonly => true,
-    requires    => Python::Virtualenv[$patchwork::virtualenv_dir],
+    require     => Python::Virtualenv[$patchwork::virtualenv_dir],
   }
 
   exec { 'load defaults':
-    command  => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
-    user     => $patchwork::user,
-    group    => $patchwork::group,
-    cwd      => $patchwork::install_dir,
-    requires => [
+    command => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
+    user    => $patchwork::user,
+    group   => $patchwork::group,
+    cwd     => $patchwork::install_dir,
+    require => [
       Exec['syncdb'],
       Python::Virtualenv[$patchwork::virtualenv_dir],
-    },
+    ],
   }
 
 }
