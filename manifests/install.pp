@@ -112,10 +112,11 @@ class patchwork::install {
   }
 
   python::requirements { $patchwork::requirements:
-    virtualenv => $patchwork::virtualenv_dir,
-    owner      => $patchwork::user,
-    group      => $patchwork::group,
-    require    => [
+    virtualenv  => $patchwork::virtualenv_dir,
+    owner       => $patchwork::user,
+    group       => $patchwork::group,
+    forceupdate => true,
+    require     => [
       Class['python'],
       Python::Virtualenv[$patchwork::virtualenv_dir],
     ],
