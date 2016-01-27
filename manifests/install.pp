@@ -81,7 +81,6 @@ class patchwork::install {
     comment => 'User for managing Patchwork',
     name    => $patchwork::user,
     home    => $patchwork::install_dir,
-    shell   => '/sbin/nologin',
     system  => true,
   }
 
@@ -98,6 +97,7 @@ class patchwork::install {
     group    => $patchwork::group,
     source   => $patchwork::source_repo,
     revision => $revision,
+    force    => true,
     require  => File[$patchwork::install_dir],
   }
 
