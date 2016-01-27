@@ -62,7 +62,6 @@ class patchwork::database::mysql {
     user        => $patchwork::user,
     group       => $patchwork::group,
     cwd         => $patchwork::install_dir,
-    noop        => true,
     refreshonly => true,
     require     => [
       Exec['syncdb'],
