@@ -59,4 +59,12 @@ class patchwork::config (
     content => template("${module_name}/settings.py.erb"),
   }
 
+  file { "${patchwork::install_dir}/patchwork/patchwork.wsgi":
+    ensure => file,
+    mode   => '0644',
+    owner  => $patchwork::user,
+    group  => $patchwork::group,
+    source => 'puppet:///modules/patchwork/patchwork.wsgi',
+  }
+
 }
