@@ -35,6 +35,7 @@ class patchwork::database::mysql {
       host     => $patchwork::database_host,
       tag      => $patchwork::database_tag,
       before   => Exec['load defaults'],
+      notify   => Exec['syncdb'],
     }
   } else {
     mysql::db { 'patchwork':
@@ -43,15 +44,29 @@ class patchwork::database::mysql {
       password => $patchwork::database_pass,
       host     => $patchwork::database_host,
       before   => Exec['load defaults'],
+      notify   => Exec['syncdb'],
     }
   }
 
+  exec { 'syncdb':
+    command     => "${patchwork::virtualenv_dir}/bin/python manage.py syncdb",
+    user        => $patchwork::user,
+    group       => $patchwork::group,
+    cwd         => $patchwork::install_dir,
+    noop        => true,
+    refreshonly => true,
+    requires    => Python::Virtualenv[$patchwork::virtualenv_dir],
+  }
+
   exec { 'load defaults':
-    command => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
-    user    => $patchwork::user,
-    group   => $patchwork::group,
-    cwd     => $patchwork::install_dir,
-    creates => '/foo',
+    command  => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
+    user     => $patchwork::user,
+    group    => $patchwork::group,
+    cwd      => $patchwork::install_dir,
+    requires => [
+      Exec['syncdb'],
+      Python::Virtualenv[$patchwork::virtualenv_dir],
+    },
   }
 
 }
