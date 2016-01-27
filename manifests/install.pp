@@ -122,4 +122,11 @@ class patchwork::install {
     ],
   }
 
+  python::pip { 'uwsgi':
+    ensure     => '2.0.12',
+    virtualenv => $patchwork::virtualenv_dir,
+    owner      => $patchwork::user,
+    require    => Python::Virtualenv[$patchwork::virtualenv_dir],
+  }
+
 }
