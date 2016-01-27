@@ -55,8 +55,8 @@ class patchwork::install {
     # that fixes this.
     #class { '::mysql::bindings::daemon_dev': }
     package { 'mysql-daemon_dev':
-      ensure          => 'present',
-      name            => 'mariadb-devel',
+      ensure => 'present',
+      name   => 'mariadb-devel',
     }
     class { '::mysql::bindings':
       python_enable => true,
@@ -97,12 +97,21 @@ class patchwork::install {
 
   # Creat a virtualenv and install patchwork's requirements.txt
   python::virtualenv { $patchwork::virtualenv_dir:
-    requirements => "${patchwork::install_dir}/docs/requirements-prod.txt",
-    owner        => $patchwork::user,
-    group        => $patchwork::group,
-    require      => [
+    owner   => $patchwork::user,
+    group   => $patchwork::group,
+    require => [
       Class['python'],
       Vcsrepo[$patchwork::install_dir],
+    ],
+  }
+
+  python::requirements { $patchwork::requirements:
+    virtualenv => $patchwork::virtualenv_dir,
+    owner      => $patchwork::user,
+    group      => $patchwork::group,
+    require    => [
+      Class['python'],
+      Python::Virtualenv[$patchwork::virtualenv_dir],
     ],
   }
 

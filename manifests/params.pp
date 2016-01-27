@@ -25,6 +25,7 @@
 class patchwork::params {
   $install_dir      = '/opt/patchwork'
   $virtualenv_dir   = '/opt/patchwork/venv'
+  $requirements     = '/opt/patchwork/docs/requirements-prod.txt'
   $version          = 'master'
   $user             = 'patchwork'
   $group            = 'patchwork'

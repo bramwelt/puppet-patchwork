@@ -55,7 +55,7 @@ class patchwork::database::mysql {
     cwd         => $patchwork::install_dir,
     noop        => true,
     refreshonly => true,
-    require     => Python::Virtualenv[$patchwork::virtualenv_dir],
+    require     => Python::Requirements[$patchwork::requirements],
     notify      => Exec['load defaults'],
   }
 
@@ -68,7 +68,7 @@ class patchwork::database::mysql {
     refreshonly => true,
     require     => [
       Exec['syncdb'],
-      Python::Virtualenv[$patchwork::virtualenv_dir],
+      Python::Requirements[$patchwork::requirements],
     ],
   }
 
