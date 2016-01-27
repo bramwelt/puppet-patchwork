@@ -75,6 +75,7 @@ class patchwork::install {
     comment    => 'User for managing Patchwork',
     name       => $patchwork::user,
     home       => $patchwork::install_dir,
+    shell      => '/sbin/nologin',
     managehome => true,
     system     => true,
   }
