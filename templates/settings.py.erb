@@ -29,7 +29,11 @@ SECRET_KEY = repr("".join([random.choice(chars) for i in range(0,50)]))
 # Replace this with your own details
 
 ADMINS = (
-#    ('Jeremy Kerr', 'jk@ozlabs.org'),
+<%- if @admins -%>
+    <%- @admins.each do |name, email| -%>
+    ('<%= name %>', '<%= email %>'),
+    <%- end -%>
+<%- end -%>
 )
 
 DEFAULT_FROM_EMAIL = '<%= @from_email %>'

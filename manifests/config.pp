@@ -48,6 +48,7 @@ class patchwork::config (
   $patches_per_page   = '100',
   $force_https_links  = 'False',
   $from_email         = 'Patchwork <patchwork@patchwork.example.com>',
+  $admins             = {},
   $notification_delay = $patchwork::cron_minutes,
 ) inherits patchwork {
 

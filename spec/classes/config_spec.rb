@@ -10,6 +10,7 @@ describe 'patchwork::config', :type => 'class' do
            .with_content(/DEFAULT_FROM_EMAIL = 'Patchwork <patchwork@patchwork.example.com>'/)
            .with_content(/NOTIFICATION_DELAY_MINUTES = 10/)
            .with_content(/TIME_ZONE = 'Etc\/UTC'/)
+           .with_content(/ADMINS = \(\s+\)/)
     }
   end
   context 'with defaults for all parameters' do
@@ -21,6 +22,7 @@ describe 'patchwork::config', :type => 'class' do
       :patches_per_page => '80',
       :language_code => 'fi-SE',
       :force_https_links => 'True',
+      :admins => {'Patchwork Admin' => 'patchwork@example.com'}
     }}
     it { should compile }
     it { should contain_file('/opt/patchwork/patchwork/settings/production.py')
@@ -34,6 +36,7 @@ describe 'patchwork::config', :type => 'class' do
            .with_content(/NOTIFICATION_DELAY_MINUTES = 20/)
            .with_content(/FORCE_HTTPS_LINKS = True/)
            .with_content(/DEFAULT_PATCHES_PER_PAGE = 80/)
+           .with_content(/ADMINS = \(\s+\('Patchwork Admin', 'patchwork@example.com'\),\s\)/)
     }
   end
 end
