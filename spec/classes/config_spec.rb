@@ -11,6 +11,7 @@ describe 'patchwork::config', :type => 'class' do
            .with_content(/NOTIFICATION_DELAY_MINUTES = 10/)
            .with_content(/TIME_ZONE = 'Etc\/UTC'/)
            .with_content(/ADMINS = \(\s+\)/)
+           .with_content(/ALLOWED_HOSTS = \(\s+\)/)
     }
   end
   context 'with defaults for all parameters' do
@@ -22,7 +23,8 @@ describe 'patchwork::config', :type => 'class' do
       :patches_per_page => '80',
       :language_code => 'fi-SE',
       :force_https_links => 'True',
-      :admins => {'Patchwork Admin' => 'patchwork@example.com'}
+      :admins => {'Patchwork Admin' => 'patchwork@example.com'},
+      :allowed_hosts => ['192.168.0.0/24','foo.example.com'],
     }}
     it { should compile }
     it { should contain_file('/opt/patchwork/patchwork/settings/production.py')
@@ -37,6 +39,7 @@ describe 'patchwork::config', :type => 'class' do
            .with_content(/FORCE_HTTPS_LINKS = True/)
            .with_content(/DEFAULT_PATCHES_PER_PAGE = 80/)
            .with_content(/ADMINS = \(\s+\('Patchwork Admin', 'patchwork@example.com'\),\s\)/)
+           .with_content(/ALLOWED_HOSTS = \(\s+'192\.168\.0\.0\/24',\s+'foo\.example\.com',\s\)/)
     }
   end
 end

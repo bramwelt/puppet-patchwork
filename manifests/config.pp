@@ -49,6 +49,7 @@ class patchwork::config (
   $force_https_links  = 'False',
   $from_email         = 'Patchwork <patchwork@patchwork.example.com>',
   $admins             = {},
+  $allowed_hosts      = [],
   $notification_delay = $patchwork::cron_minutes,
 ) inherits patchwork {
 
