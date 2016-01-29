@@ -53,8 +53,12 @@ class patchwork::database::mysql {
     user    => $patchwork::user,
     group   => $patchwork::group,
     cwd     => $patchwork::install_dir,
-    require => Python::Requirements[$patchwork::requirements],
     notify  => Exec['load defaults'],
+    unless  => "mysql -h${patchwork::database_host} \
+               -u${patchwork::database_user} \
+               -p${patchwork::database_password} \
+               -e 'SELECT 1 FROM patchwork_project'",
+    require => Python::Requirements[$patchwork::requirements],
   }
 
   exec { 'load defaults':
@@ -62,7 +66,10 @@ class patchwork::database::mysql {
     user        => $patchwork::user,
     group       => $patchwork::group,
     cwd         => $patchwork::install_dir,
-    refreshonly => true,
+    unless  => "mysql -h${patchwork::database_host} \
+               -u${patchwork::database_user} \
+               -p${patchwork::database_password} \
+               -e 'SELECT 1 FROM patchwork_tags'",
     require     => [
       Exec['syncdb'],
       Python::Requirements[$patchwork::requirements],
