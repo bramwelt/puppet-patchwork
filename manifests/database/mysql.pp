@@ -54,7 +54,7 @@ class patchwork::database::mysql {
     group   => $patchwork::group,
     cwd     => $patchwork::install_dir,
     notify  => Exec['load defaults'],
-    unless  => "mysql -h${patchwork::database_host} \
+    unless  => "/usr/bin/mysql -h${patchwork::database_host} \
                -u${patchwork::database_user} \
                -p${patchwork::database_password} \
                -e 'SELECT 1 FROM patchwork_project'",
@@ -66,7 +66,7 @@ class patchwork::database::mysql {
     user        => $patchwork::user,
     group       => $patchwork::group,
     cwd         => $patchwork::install_dir,
-    unless  => "mysql -h${patchwork::database_host} \
+    unless  => "/usr/bin/mysql -h${patchwork::database_host} \
                -u${patchwork::database_user} \
                -p${patchwork::database_password} \
                -e 'SELECT 1 FROM patchwork_tags'",
