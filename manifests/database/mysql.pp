@@ -53,7 +53,6 @@ class patchwork::database::mysql {
     user    => $patchwork::user,
     group   => $patchwork::group,
     cwd     => $patchwork::install_dir,
-    notify  => Exec['load defaults'],
     unless  => "/usr/bin/mysql -h${patchwork::database_host} \
                -u${patchwork::database_user} \
                -p${patchwork::database_password} \
