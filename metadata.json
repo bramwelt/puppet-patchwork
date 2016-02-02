@@ -35,6 +35,10 @@
       "version_requirement":">= 1.0.0, <= 1.9.7"
     },
     {
+      "name":"cwood-uwsgi",
+      "version_requirement":">= 0.2.0, < 0.3.0"
+    },
+    {
       "name": "puppetlabs-stdlib",
       "version_requirement": ">= 4.0.0 < 5.0.0"
     }
