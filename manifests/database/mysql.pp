@@ -61,15 +61,15 @@ class patchwork::database::mysql {
   }
 
   exec { 'load defaults':
-    command     => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
-    user        => $patchwork::user,
-    group       => $patchwork::group,
-    cwd         => $patchwork::install_dir,
+    command => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
+    user    => $patchwork::user,
+    group   => $patchwork::group,
+    cwd     => $patchwork::install_dir,
     unless  => "/usr/bin/mysql -h${patchwork::database_host} \
                -u${patchwork::database_user} \
                -p${patchwork::database_password} \
                -e 'SELECT 1 FROM patchwork_tags'",
-    require     => [
+    require => [
       Exec['syncdb'],
       Python::Requirements[$patchwork::requirements],
     ],
