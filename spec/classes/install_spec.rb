@@ -6,7 +6,15 @@ describe 'patchwork', :type => 'class' do
       it { should contain_class('git') } 
       it { should contain_class('python') } 
       it { should contain_class('mysql::server') } 
-      it { should contain_class('mysql::bindings::daemon_dev') }
+      # Uncomment this once the mysql module has been updated
+      #it { should contain_class('mysql::bindings::daemon_dev') }
+      # Remove the following check once mysql has been updated
+      it { should contain_package('mysql-daemon_dev')
+        .with({
+          'ensure' => 'present',
+          'name' => 'mariadb-devel',
+        })
+      }
       it { should contain_class('mysql::bindings')
         .with({
           'python_enable' => 'true'
