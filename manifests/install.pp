@@ -128,12 +128,7 @@ class patchwork::install {
     ensure              => 'present',
     uid                 => $patchwork::user,
     gid                 => $patchwork::group,
-    application_options => {
-      virtualenv => $patchwork::virtualenv_dir,
-      chdir      => $patchwork::install_dir,
-      master     => true,
-      logto      => '/var/log/patchwork/uwsgi.log',
-    }
+    application_options => $patchwork::uwsgi_options,
   }
 
 }

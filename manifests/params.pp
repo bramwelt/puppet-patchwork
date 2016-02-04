@@ -35,6 +35,16 @@ class patchwork::params {
   $database_user    = 'patchwork'
   $database_pass    = 'patchwork'
   $database_tag     = 'mysql-patchwork'
+  $uwsgi_options    = {
+    virtualenv  => '/opt/patchwork/venv',
+    chdir       => '/opt/patchwork',
+    logto       => '/var/log/patchwork/uwsgi.log',
+    master      => true,
+    http-socket => ':9000',
+    wsgi-file   => 'patchwork/patchwork.wsgi',
+    processes   => 4,
+    threads     => 2,
+  }
   $collect_exported = false
   $cron_minutes     = 10
 }

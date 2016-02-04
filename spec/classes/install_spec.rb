@@ -58,8 +58,12 @@ describe 'patchwork', :type => 'class' do
           'application_options' => {
             'virtualenv' => '/opt/patchwork/venv',
             'chdir'      => '/opt/patchwork',
-            'master'     => 'true',
             'logto'      => '/var/log/patchwork/uwsgi.log',
+            'master'     => true,
+            'http-socket' => ':9000',
+            'wsgi-file' => 'patchwork/patchwork.wsgi',
+            'processes' => 4,
+            'threads' => 2,
           }
         })
       }
