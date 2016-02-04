@@ -126,6 +126,8 @@ class patchwork::install {
 
   uwsgi::app { 'patchwork':
     ensure              => 'present',
+    uid                 => $patchwork::user,
+    gid                 => $patchwork::group,
     application_options => {
       virtualenv => $patchwork::virtualenv_dir,
       chdir      => $patchwork::install_dir,
