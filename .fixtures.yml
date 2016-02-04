@@ -9,7 +9,7 @@ fixtures:
       ref: '1.9.4'
     mysql: 'puppetlabs-mysql'
     uwsgi:
-      repo: 'cwood-uwsgi'
-      ref: '0.2.2'
+      repo: 'engage-uwsgi'
+      ref: '1.2.0'
   symlinks:
     patchwork: "#{source_dir}"
