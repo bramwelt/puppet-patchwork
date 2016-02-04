@@ -53,6 +53,8 @@ class patchwork::config (
   $notification_delay = $patchwork::cron_minutes,
 ) inherits patchwork {
 
+  validate_string($secret_key)
+
   file { "${patchwork::install_dir}/patchwork/settings/production.py":
     ensure  => file,
     mode    => '0644',

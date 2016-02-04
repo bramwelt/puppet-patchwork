@@ -16,6 +16,13 @@ tree, or add the following to your `Puppetfile`:
 A node should then be assigned the relevant patchwork classes.
 
   class { 'patchwork': }
+  class { 'patchwork::config':
+     secret_key => 'CHANGEME'
+  }
+
+A secret key can be generated with the following Linux command:
+
+  pwgen -sync 50 1 | tr -d "'\""
 
 ### patchwork
 
