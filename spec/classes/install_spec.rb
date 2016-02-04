@@ -39,9 +39,28 @@ describe 'patchwork', :type => 'class' do
       }
       it { should contain_python__virtualenv('/opt/patchwork/venv')
         .with({
-          'requirements' => '/opt/patchwork/docs/requirements-prod.txt',
           'owner'        => 'patchwork',
           'group'        => 'patchwork',
+        })
+      }
+      it { should contain_python__requirements('/opt/patchwork/docs/requirements-prod.txt')
+        .with({
+          'virtualenv'   => '/opt/patchwork/venv',
+          'owner'        => 'patchwork',
+          'group'        => 'patchwork',
+          'forceupdate'  => 'true',
+        })
+      }
+      it { should contain_class('uwsgi') }
+      it { should contain_uwsgi__app('patchwork')
+        .with({
+          'ensure'              => 'present',
+          'application_options' => {
+            'virtualenv' => '/opt/patchwork/venv',
+            'chdir'      => '/opt/patchwork',
+            'master'     => 'true',
+            'logto'      => '/var/log/patchwork/uwsgi.log',
+          }
         })
       }
     end
