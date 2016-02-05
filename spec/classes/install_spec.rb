@@ -52,6 +52,11 @@ describe 'patchwork', :type => 'class' do
         })
       }
       it { should contain_class('uwsgi') }
+      it { should contain_file('/var/log/patchwork')
+           .with({
+               'ensure' => 'directory',
+           })
+      }
       it { should contain_uwsgi__app('patchwork')
         .with({
           'ensure'              => 'present',

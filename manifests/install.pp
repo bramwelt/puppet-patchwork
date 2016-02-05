@@ -124,6 +124,17 @@ class patchwork::install {
 
   include ::uwsgi
 
+  if (has_key($patchwork::uwsgi_options, 'logto')) {
+    $log_dir = dirname($patchwork::uwsgi_options['logto'])
+    validate_absolute_path($log_dir)
+
+    file { $log_dir:
+      ensure => 'directory',
+      owner  => $patchwork::user,
+      group  => $patchwork::group,
+    }
+  }
+
   uwsgi::app { 'patchwork':
     ensure              => 'present',
     uid                 => $patchwork::user,
