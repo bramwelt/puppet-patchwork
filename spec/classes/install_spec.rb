@@ -61,8 +61,8 @@ describe 'patchwork', :type => 'class' do
             'logto'      => '/var/log/patchwork/uwsgi.log',
             'master'     => true,
             'http-socket' => ':9000',
-            'wsgi-file' => 'patchwork/patchwork.wsgi',
             'static-map' => '/static=/opt/patchwork/static',
+            'wsgi-file' => 'patchwork.wsgi',
             'processes' => 4,
             'threads' => 2,
           }
