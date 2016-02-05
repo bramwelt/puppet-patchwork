@@ -112,12 +112,14 @@ class patchwork (
   include 'patchwork::install'
   include 'patchwork::database::mysql'
   include 'patchwork::config'
+  include 'patchwork::uwsgi'
   include 'patchwork::cron'
 
   Anchor['patchwork:begin'] ->
     Class['patchwork::install'] ->
     Class['patchwork::config'] ->
     Class['patchwork::database::mysql'] ->
+    Class['patchwork::uwsgi'] ->
     Class['patchwork::cron'] ->
   Anchor['patchwork:end']
 

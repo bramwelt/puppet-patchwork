@@ -51,28 +51,6 @@ describe 'patchwork', :type => 'class' do
           'forceupdate'  => 'true',
         })
       }
-      it { should contain_class('uwsgi') }
-      it { should contain_file('/var/log/patchwork')
-           .with({
-               'ensure' => 'directory',
-           })
-      }
-      it { should contain_uwsgi__app('patchwork')
-        .with({
-          'ensure'              => 'present',
-          'application_options' => {
-            'virtualenv' => '/opt/patchwork/venv',
-            'chdir'      => '/opt/patchwork',
-            'logto'      => '/var/log/patchwork/uwsgi.log',
-            'master'     => true,
-            'http-socket' => ':9000',
-            'static-map' => '/static=/opt/patchwork/static',
-            'wsgi-file' => 'patchwork.wsgi',
-            'processes' => 4,
-            'threads' => 2,
-          }
-        })
-      }
     end
     context 'with specific patchwork version' do
       let(:params) {{
