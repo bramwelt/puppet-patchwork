@@ -64,7 +64,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.7/ref/settings/#static-files
 #
 
-STATIC_ROOT = '<%= @location -%>/htdocs/static'
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 
 #
 # Patchwork settings

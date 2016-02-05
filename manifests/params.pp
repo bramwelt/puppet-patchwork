@@ -38,6 +38,7 @@ class patchwork::params {
   $uwsgi_options    = {
     virtualenv  => '/opt/patchwork/venv',
     chdir       => '/opt/patchwork',
+    static-map  => '/static=/opt/patchwork/static',
     logto       => '/var/log/patchwork/uwsgi.log',
     master      => true,
     http-socket => ':9000',

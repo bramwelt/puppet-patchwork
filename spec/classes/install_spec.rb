@@ -62,6 +62,7 @@ describe 'patchwork', :type => 'class' do
             'master'     => true,
             'http-socket' => ':9000',
             'wsgi-file' => 'patchwork/patchwork.wsgi',
+            'static-map' => '/static=/opt/patchwork/static',
             'processes' => 4,
             'threads' => 2,
           }
