@@ -20,7 +20,7 @@ describe 'patchwork', :type => 'class' do
             'logto'      => '/var/log/patchwork/uwsgi.log',
             'master'     => true,
             'http-socket' => ':9000',
-            'static-map' => '/static=/opt/patchwork/static',
+            'static-map' => '/static=/opt/patchwork/htdocs',
             'wsgi-file' => 'patchwork.wsgi',
             'processes' => 4,
             'threads' => 2,
