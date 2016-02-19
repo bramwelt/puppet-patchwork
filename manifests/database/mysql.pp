@@ -27,6 +27,7 @@ class patchwork::database::mysql {
   include patchwork
 
   validate_bool($patchwork::collect_exported)
+
   if ($patchwork::collect_exported) {
     @@mysql::db { "patchwork_${::fqdn}":
       user     => $patchwork::database_user,
@@ -34,8 +35,6 @@ class patchwork::database::mysql {
       dbname   => $patchwork::database_name,
       host     => $patchwork::database_host,
       tag      => $patchwork::database_tag,
-      before   => Exec['load defaults'],
-      notify   => Exec['syncdb'],
     }
   } else {
     mysql::db { 'patchwork':
@@ -43,36 +42,6 @@ class patchwork::database::mysql {
       user     => $patchwork::database_user,
       password => $patchwork::database_pass,
       host     => $patchwork::database_host,
-      before   => Exec['load defaults'],
-      notify   => Exec['syncdb'],
     }
   }
-
-  exec { 'syncdb':
-    command => "${patchwork::virtualenv_dir}/bin/python manage.py syncdb --noinput",
-    user    => $patchwork::user,
-    group   => $patchwork::group,
-    cwd     => $patchwork::install_dir,
-    unless  => "/usr/bin/mysql -h${patchwork::database_host} \
-               -u${patchwork::database_user} \
-               -p${patchwork::database_password} \
-               -e 'SELECT 1 FROM patchwork_project'",
-    require => Python::Requirements[$patchwork::requirements],
-  }
-
-  exec { 'load defaults':
-    command => "${patchwork::virtualenv_dir}/bin/python manage.py loaddata default_tags default_states",
-    user    => $patchwork::user,
-    group   => $patchwork::group,
-    cwd     => $patchwork::install_dir,
-    unless  => "/usr/bin/mysql -h${patchwork::database_host} \
-               -u${patchwork::database_user} \
-               -p${patchwork::database_password} \
-               -e 'SELECT 1 FROM patchwork_tags'",
-    require => [
-      Exec['syncdb'],
-      Python::Requirements[$patchwork::requirements],
-    ],
-  }
-
 }

@@ -24,6 +24,14 @@ A secret key can be generated with the following Linux command:
 
   pwgen -sync 50 1 | tr -d "'\""
 
+After Packwork has been installed and configured, it is up to you to
+manage the application deployment. This includes:
+
+ - Initializing / Migrating the Database: `./manage.py syncdb --noinput`
+ - Loading fixtures `./manage.py loaddata default_tags default_states`
+ - Collecting Static files: `./manage.py collectstatic`
+ - Creating admin(s)/superuser(s): `./manage.py createsuperuser`
+
 ### patchwork
 
 The `patchwork` class installs and configures a production patchwork
