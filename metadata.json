@@ -20,27 +20,27 @@
   "dependencies": [
     {
       "name":"puppetlabs-vcsrepo",
-      "version_requirement":">= 1.0.0, < 2.0.0"
+      "version_requirement":">=1.0.0 <2.0.0"
     },
     {
       "name":"puppetlabs-git",
-      "version_requirement":">= 0.1.0, < 1.0.0"
+      "version_requirement":">=0.1.0 <1.0.0"
     },
     {
       "name":"puppetlabs-mysql",
-      "version_requirement":">= 3.0.0, < 4.0.0"
+      "version_requirement":">=3.0.0 <4.0.0"
     },
     {
       "name":"stankevich-python", 
-      "version_requirement":">= 1.0.0, <= 1.9.7"
+      "version_requirement":">=1.0.0 <=1.9.7"
     },
     {
-      "name":"cwood-uwsgi",
-      "version_requirement":">= 0.2.0, < 0.3.0"
+      "name":"engage-uwsgi",
+      "version_requirement":">=1.2.0 <2.0.0"
     },
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
+      "version_requirement": ">=4.0.0 <5.0.0"
     }
   ],
   "requirements": [
@@ -50,7 +50,7 @@
     },
     {
       "name": "puppet",
-      "version_requirement": ">=2.7.20 <5.0.0"
+      "version_requirement": ">=3.1.0 <5.0.0"
     }
   ]
 }
