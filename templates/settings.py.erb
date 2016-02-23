@@ -129,3 +129,8 @@ LOGGING = {
         },
     },
 }
+
+# Replace EMAIL_BACKEND with this setting to keep Patchwork from sending emails
+#  EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+#  EMAIL_FILE_PATH = '/var/log/patchwork/email.log'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
