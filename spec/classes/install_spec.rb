@@ -43,7 +43,31 @@ describe 'patchwork', :type => 'class' do
           'group'        => 'patchwork',
         })
       }
-      it { should contain_python__requirements('/opt/patchwork/docs/requirements-prod.txt')
+      it { should contain_python__pip('Django')
+        .with({
+          'pkgname'    => 'Django',
+          'virtualenv' => '/opt/patchwork/venv',
+          'owner'      => 'patchwork',
+          'ensure'     => '>=1.8,<1.9',
+        })
+      }
+      it { should contain_python__pip('MySQL-Python')
+        .with({
+          'pkgname'    => 'MySQL-Python',
+          'virtualenv' => '/opt/patchwork/venv',
+          'owner'      => 'patchwork',
+          'ensure'     => '1.2.5',
+        })
+      }
+      it { should contain_python__pip('python-dateutil')
+        .with({
+          'pkgname'    => 'python-dateutil',
+          'virtualenv' => '/opt/patchwork/venv',
+          'owner'      => 'patchwork',
+          'ensure'     => '1.5',
+        })
+      }
+      it { should_not contain_python__requirements('/opt/patchwork/docs/requirements-prod.txt')
         .with({
           'virtualenv'   => '/opt/patchwork/venv',
           'owner'        => 'patchwork',

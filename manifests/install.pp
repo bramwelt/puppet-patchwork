@@ -111,16 +111,37 @@ class patchwork::install {
     ],
   }
 
-  python::requirements { $patchwork::requirements:
-    virtualenv  => $patchwork::virtualenv_dir,
-    owner       => $patchwork::user,
-    group       => $patchwork::group,
-    forceupdate => true,
-    require     => [
+  python::pip { 'MySQL-Python':
+    ensure     => '1.2.5',
+    pkgname    => 'MySQL-Python',
+    virtualenv => $patchwork::virtualenv_dir,
+    owner      => $patchwork::user,
+    require    => [
       Class['python'],
       Python::Virtualenv[$patchwork::virtualenv_dir],
     ],
   }
 
+  python::pip { 'python-dateutil':
+    ensure     => '1.5',
+    pkgname    => 'python-dateutil',
+    virtualenv => $patchwork::virtualenv_dir,
+    owner      => $patchwork::user,
+    require    => [
+      Class['python'],
+      Python::Virtualenv[$patchwork::virtualenv_dir],
+    ],
+  }
+
+  python::pip { 'Django':
+    ensure     => '>=1.8,<1.9',
+    pkgname    => 'Django',
+    virtualenv => $patchwork::virtualenv_dir,
+    owner      => $patchwork::user,
+    require    => [
+      Class['python'],
+      Python::Virtualenv[$patchwork::virtualenv_dir],
+    ],
+  }
 
 }
