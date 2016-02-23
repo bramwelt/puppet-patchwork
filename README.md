@@ -14,7 +14,9 @@ web-based patch tracking system
 To use this module you can either directly include it in your module
 tree, or add the following to your `Puppetfile`:
 
+```Puppetfile
   mod 'bramwelt-patchwork'
+```
 
 A node should then be assigned the relevant patchwork classes.
 
@@ -30,7 +32,9 @@ A node should then be assigned the relevant patchwork classes.
 
 A secret key can be generated with the following Linux command:
 
-  pwgen -sync 50 1 | tr -d "'\""
+```shell
+  $ pwgen -sync 50 1 | tr -d "'\""
+```
 
 If you're using Hiera, a basic yaml configuration might look like:
 
