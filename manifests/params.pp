@@ -1,6 +1,6 @@
 # == Class: patchwork::params
 #
-# Parameter definition for patchwork
+# Parameter definition for patchwork. See init.pp for documentation.
 #
 # === Authors
 #

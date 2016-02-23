@@ -2,24 +2,62 @@
 #
 # Manages the Patchwork settings file
 #
-# === Parameters
-#
-# [*location*]
-#   Location patchwork should be cloned to.
-#
-#   Default: '/opt/patchwork'
-#
-#
 # === Variables
 #
-# Here you should define a list of variables that this module would require.
+# [*secret_key*]
+#   A secret key for a particular Django installation. This is used to
+#   provide cryptographic signing, and should be set to a unique,
+#   unpredictable value.
 #
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SECRET_KEY
+#
+# === Parameters
+#
+# [*time_zone*]
+#   A string representing the time zone for this installation.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-TIME_ZONE
+#
+# [*language_code*]
+#   A string representing the language code for this installation.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-LANGUAGE_CODE
+#
+# [*patches_per_page*]
+#   Number of patches listed on each page of a project's patch listing.
+#
+# [*force_https_links*]
+#   Set to True to always generate https:// links instead of guessing
+#   the scheme based on current access. This is useful if SSL protocol
+#   is terminated upstream of the server (e.g. at the load balancer)
+#
+# [*from_email*]
+#   Sets the email address patch notifications, error messages, and
+#   validation emails come from.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-DEFAULT_FROM_EMAIL
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SERVER_EMAIL
+#
+# [*admins*]
+#   A mapping of full names to email addresses. Email addresses listed here
+#   will receive emails on server errors which may contain sensitive
+#   information.
+#   ```
+#   {
+#     'Django Admin' => 'admin@example.com',
+#   }
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-ADMINS
+#
+# [*allowed_hosts*]
+#   A list of strings representing the host/domain names that this Django
+#   site can serve.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-ALLOWED_HOSTS
+#
+# [*notification_delay*]
+#   This should be set to the same as `cron_minutes`. Number of minutes
+#   patchwork should send Email notifications.
 #
 # === Authors
 #

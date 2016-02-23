@@ -3,14 +3,6 @@
 # Manages patchworks' cron job for expiring registrations and sending patch
 # change notification
 #
-# == Parameters
-# 
-# [*virtualenv*]
-#   File path to patchwork's python virtual environment.
-#
-# [*location*]
-#   File path to the installation directory of patchwork.
-#
 # === Authors
 #
 # Trevor Bramwell <tbramwell@linuxfoundation.org>

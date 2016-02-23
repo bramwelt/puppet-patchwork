@@ -1,7 +1,6 @@
 # == Class: patchwork::database::mysql
 #
-# Exports the patchwork database to be collect by a mysql server.
-# Optionally configures and installs a local mysql server.
+# Creates the patchwork database on a local or remote mysql server.
 #
 # === Authors
 #
