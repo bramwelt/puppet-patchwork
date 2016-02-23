@@ -134,7 +134,7 @@ class patchwork::install {
   }
 
   python::pip { 'Django':
-    ensure     => '>=1.8,<1.9',
+    ensure     => '1.8.9',
     pkgname    => 'Django',
     virtualenv => $patchwork::virtualenv_dir,
     owner      => $patchwork::user,

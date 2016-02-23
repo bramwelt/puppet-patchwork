@@ -48,7 +48,7 @@ describe 'patchwork', :type => 'class' do
           'pkgname'    => 'Django',
           'virtualenv' => '/opt/patchwork/venv',
           'owner'      => 'patchwork',
-          'ensure'     => '>=1.8,<1.9',
+          'ensure'     => '1.8.9',
         })
       }
       it { should contain_python__pip('MySQL-Python')
