@@ -81,9 +81,9 @@ class patchwork (
   $install_dir       = $patchwork::params::install_dir,
   $virtualenv_dir    = $patchwork::params::virtualenv_dir,
   $version           = $patchwork::params::version,
-  $source_repo       = $patchwork::params::source_repo,
   $user              = $patchwork::user,
   $group             = $patchwork::group,
+  $source_repo       = $patchwork::params::source_repo,
   $git_manage        = true,
   $python_manage     = true,
   $database_manage   = true,
@@ -93,6 +93,7 @@ class patchwork (
   $database_user     = $patchwork::params::database_user,
   $database_pass     = $patchwork::params::database_pass,
   $database_tag      = $patchwork::params::database_tag,
+  $uwsgi_options     = $patchwork::params::uwsgi_options,
   $collect_exported  = $patchwork::params::collect_exported,
   $cron_minutes      = $patchwork::params::cron_minutes,
 ) inherits patchwork::params {
