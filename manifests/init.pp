@@ -84,9 +84,9 @@ class patchwork (
   $user              = $patchwork::user,
   $group             = $patchwork::group,
   $source_repo       = $patchwork::params::source_repo,
-  $git_manage        = true,
-  $python_manage     = true,
-  $database_manage   = true,
+  $manage_git        = true,
+  $manage_python     = true,
+  $manage_database   = true,
   # Database settings
   $database_name     = $patchwork::params::database_name,
   $database_host     = $patchwork::params::database_host,
@@ -98,14 +98,14 @@ class patchwork (
   $cron_minutes      = $patchwork::params::cron_minutes,
 ) inherits patchwork::params {
 
-  validate_string($install_dir)
-  validate_string($virtualenv_dir)
+  validate_absolute_path($install_dir)
+  validate_absolute_path($virtualenv_dir)
   validate_string($version)
   validate_string($source_repo)
 
-  validate_bool($git_manage)
-  validate_bool($python_manage)
-  validate_bool($database_manage)
+  validate_bool($manage_git)
+  validate_bool($manage_python)
+  validate_bool($manage_database)
 
   anchor { 'patchwork:begin': }
   anchor { 'patchwork:end': }

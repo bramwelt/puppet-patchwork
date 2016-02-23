@@ -68,6 +68,24 @@ describe 'patchwork', :type => 'class' do
         })
       }
     end
+    context 'with unmanaged git' do
+      let(:params) {{
+        :manage_git => false,
+      }}
+      it { should_not contain_class('git') }
+    end
+    context 'with unmanaged database' do
+      let(:params) {{
+        :manage_database => false,
+      }}
+      it { should_not contain_class('mysql::server') }
+    end
+    context 'with unmanaged python' do
+      let(:params) {{
+        :manage_python => false,
+      }}
+      it { should_not contain_class('python') }
+    end
     context 'with specific patchwork version' do
       let(:params) {{
         :version => '1.2.3',

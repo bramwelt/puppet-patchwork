@@ -35,11 +35,11 @@
 #
 class patchwork::install {
 
-  if ($patchwork::git_manage) {
+  if ($patchwork::manage_git) {
     class { '::git': }
   }
 
-  if ($patchwork::python_manage) {
+  if ($patchwork::manage_python) {
     class { '::python':
       version    => 'system',
       dev        => true,
@@ -49,7 +49,7 @@ class patchwork::install {
     }
   }
 
-  if ($patchwork::database_manage) {
+  if ($patchwork::manage_database) {
     class { '::mysql::server': }
     # Manually install mariadb-devel until mysql module updates with the code
     # that fixes this.
