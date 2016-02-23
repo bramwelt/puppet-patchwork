@@ -67,14 +67,6 @@ describe 'patchwork', :type => 'class' do
           'ensure'     => '1.5',
         })
       }
-      it { should_not contain_python__requirements('/opt/patchwork/docs/requirements-prod.txt')
-        .with({
-          'virtualenv'   => '/opt/patchwork/venv',
-          'owner'        => 'patchwork',
-          'group'        => 'patchwork',
-          'forceupdate'  => 'true',
-        })
-      }
     end
     context 'with specific patchwork version' do
       let(:params) {{
