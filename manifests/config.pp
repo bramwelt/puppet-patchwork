@@ -92,6 +92,12 @@ class patchwork::config (
 ) inherits patchwork {
 
   validate_string($secret_key)
+  validate_string($time_zone)
+  validate_string($patches_per_page)
+  validate_string($force_https_links)
+  validate_string($from_email)
+  validate_hash($admins)
+  validate_array($allowed_hosts)
 
   file { "${patchwork::install_dir}/patchwork/settings/production.py":
     ensure  => file,

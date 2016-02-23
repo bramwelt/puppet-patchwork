@@ -25,8 +25,6 @@
 class patchwork::database::mysql {
   include patchwork
 
-  validate_bool($patchwork::collect_exported)
-
   if ($patchwork::collect_exported) {
     @@mysql::db { "patchwork_${::fqdn}":
       user     => $patchwork::database_user,

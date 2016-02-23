@@ -90,11 +90,20 @@ class patchwork (
   validate_absolute_path($install_dir)
   validate_absolute_path($virtualenv_dir)
   validate_string($version)
+  validate_string($user)
+  validate_string($group)
   validate_string($source_repo)
-
   validate_bool($manage_git)
   validate_bool($manage_python)
   validate_bool($manage_database)
+  validate_string($database_name)
+  validate_string($database_host)
+  validate_string($database_user)
+  validate_string($database_pass)
+  validate_string($database_tag)
+  validate_hash($uwsgi_options)
+  validate_bool($collect_exported)
+  validate_integer($cron_minutes, 59, 0)
 
   anchor { 'patchwork:begin': }
   anchor { 'patchwork:end': }
