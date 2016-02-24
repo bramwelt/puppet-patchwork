@@ -1,5 +1,15 @@
 # patchwork
 
+#### Table of Contents
+
+1. [Overview](#overview)
+2. [Usage - Configuration options and additional functionality](#usage)
+3. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+    * [patchwork](#patchwork)
+    * [patchwork::config](#patchworkconfig)
+4. [Limitations - OS compatibility, etc.](#limitations)
+5. [Development - Guide for contributing to the module](#development)
+6. [Release Notes/Changelog - What the module does and why it is useful](#release-noteschangelog)
 
 ## Overview
 
@@ -14,7 +24,7 @@ web-based patch tracking system
 To use this module you can either directly include it in your module
 tree, or add the following to your `Puppetfile`:
 
-```Puppetfile
+```
   mod 'bramwelt-patchwork'
 ```
 
@@ -38,7 +48,7 @@ A secret key can be generated with the following Linux command:
 
 If you're using Hiera, a basic yaml configuration might look like:
 
-```hiera
+```yaml
   patchwork::version: 'v1.0.0'
   patchwork::config::secret_key: 'CHANGEME'
   patchwork::config::allowed_hosts:
@@ -62,13 +72,13 @@ manage the application deployment. This includes:
 
 The directory where patchwork should be installed.
 
-Default: '/opt/patchwork'
+Default: `'/opt/patchwork'`
 
 #### `virtualenv_dir`
 
 The directory where the virtualenv should reside.
 
-Default: '/opt/patchwork/venv'
+Default: `'/opt/patchwork/venv'`
 
 #### `version`
 
@@ -78,32 +88,32 @@ If 'latest' is specified, the installation will track the tip of the
 patchwork 'master' branch, otherwise the repo will be ensured
 'present' overwriting any local changes that take place.
 
-Default: 'master'
+Default: `'master'`
 
 #### `source_repo`
 
 git repo URL for cloning patchwork. Useful for installing your own fork
 / patched version of patchwork.
 
-Default: git://github.com/getpatchwork/patchwork
+Default: `'git://github.com/getpatchwork/patchwork'`
 
 #### `user`
 
 User that owns patchwork files and runs the application.
 
-Default 'patchwork'
+Default `'patchwork'`
 
 #### `group`
 
 Group that has access to patchwork files.
 
-Default: 'patchwork'
+Default: `'patchwork'`
 
 #### `manage_git`
 
 Installs git. Git is required for cloning patchwork.
 
-Default: true
+Default: `true`
 
 #### `manage_python`
 
@@ -111,7 +121,7 @@ Installs python, python development libraries, pip, and virtualenv.
 Required for creating the patchwork virtualenv and installing
 patchwork's dependencies.
 
-Default: true
+Default: `true`
 
 #### `manage_database`
 
@@ -119,45 +129,45 @@ Installs a local MySQL server, the MySQL client bindings for
 python, and the MySQL development libraries which are required by the
 python bindings.
 
-Default: true
+Default: `true`
 
 #### `database_name`
 
 The name of the patchwork database.
 
-Default: 'patchwork'
+Default: `'patchwork'`
 
 #### `database_host`
 
 The hostname of the database server.
 
-Default: 'localhost'
+Default: `'localhost'`
 
 #### `database_user`
 
 The username for connection to the database.
 
-Default: 'patchwork'
+Default: `'patchwork'`
 
 #### `database_pass`
 
 The password associated with the database username.
 
-Default: 'patchwork'
+Default: `'patchwork'`
 
 #### `database_tag`
 
 Exported resource tag to for collecting the database resource onto a
 database server.
 
-Default: 'mysql-patchwork'
+Default: `'mysql-patchwork'`
 
 #### `uwsgi_options`
 
 Options hash passed to the patchwork uwsgi application.
 
 Default:
-```
+```puppet
 {
   virtualenv  => '/opt/patchwork/venv',
   chdir       => '/opt/patchwork',
@@ -175,9 +185,9 @@ Default:
 
 Changes database definition from a regular resource to an exported
 resource and allows for creating the database on another server. Also see:
-'database_tag'
+[database_tag](#database_tag)
 
-Default: false
+Default: `false`
 
 #### `cron_minutes`
 
@@ -188,7 +198,7 @@ setting defines the number of minutes between patchwork cron job runs.
 There is no need to modify `notification_delay` since
 setting `cron_minutes` will also set `patchwork::config::notification_delay`.
 
-Default: 10
+Default: `10`
 
 ### patchwork::config
 
@@ -201,31 +211,31 @@ A secret key for a particular Django installation. This is used to
 provide cryptographic signing, and should be set to a unique,
 unpredictable value.
 
-Django [SECRET_KEY](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SECRET_KEY)
+See: [SECRET_KEY](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SECRET_KEY)
 
-Default: undef
+Default: `undef`
 
 #### `time_zone`
 
 A string representing the time zone for this installation.
 
-Django [TIME_ZONE](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-TIME_ZONE)
+See: [TIME_ZONE](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-TIME_ZONE)
 
-Default: 'Etc/UTC'
+Default: `'Etc/UTC'`
 
 #### `language_code`
 
 A string representing the language code for this installation.
 
-Django [LANGUAGE_CODE](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-LANGUAGE_CODE)
+See: [LANGUAGE_CODE](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-LANGUAGE_CODE)
 
-Default: 'en_US'
+Default: `'en_US'`
 
 #### `patches_per_page`
 
 Number of patches listed on each page of a project's patch listing.
 
-Default: '100'
+Default: `'100'`
 
 #### `force_https_links`
 
@@ -233,49 +243,49 @@ Set to True to always generate https:// links instead of guessing
 the scheme based on current access. This is useful if SSL protocol
 is terminated upstream of the server (e.g. at the load balancer)
 
-Default: 'False'
+Default: `'False'`
 
 #### `from_email`
 
 Sets the email address patch notifications, error messages, and
 validation emails come from.
 
-Django [DEFAULT_FROM_EMAIL](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-DEFAULT_FROM_EMAIL)
-and
-Django [SERVER_EMAIL](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SERVER_EMAIL)
+See:
+ - [DEFAULT_FROM_EMAIL](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-DEFAULT_FROM_EMAIL)
+ - [SERVER_EMAIL](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SERVER_EMAIL)
 
-Default: 'Patchwork <patchwork@patchwork.example.com>'
+Default: `'Patchwork <patchwork@patchwork.example.com>'`
 
 #### `admins`
 
 A mapping of full names to email addresses. Email addresses listed here
 will receive emails on server errors which may contain sensitive
 information.
-```
+```puppet
 {
   'Django Admin' => 'admin@example.com',
 }
 ```
 
-Django [ADMINS](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-ADMINS)
+See: [ADMINS](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-ADMINS)
 
-Default: {}
+Default: `{}`
 
 #### `allowed_hosts`
 
 A list of strings representing the host/domain names that this Django
 site can serve.
 
-Django [ALLOWED_HOSTS](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-ALLOWED_HOSTS)
+See: [ALLOWED_HOSTS](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-ALLOWED_HOSTS)
 
-Default: []
+Default: `[]`
 
 #### `notification_delay`
 
 This should be set to the same as `cron_minutes`. Number of minutes
 patchwork should send Email notifications.
 
-Default: 10 (`patchwork::cron_minutes`)
+Default: `10` - Set by [cron_minutes](#cron_minutes)
 
 ## Limitations
 
