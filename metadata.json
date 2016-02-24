@@ -2,7 +2,7 @@
   "name": "bramwelt-patchwork",
   "version": "0.1.0",
   "author": "bramwelt",
-  "summary": "Puppet module for managing deployments of Patchwork",
+  "summary": "Web-based patch tracking system designed to facilitate the contribution and management of contributions to open-source projects",
   "license": "Apache-2.0",
   "source": "https://github.com/bramwelt/puppet-patchwork",
   "project_page": "https://github.com/bramwelt/puppet-patchwork",
