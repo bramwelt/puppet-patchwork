@@ -5,7 +5,7 @@
 1. [Overview](#overview)
 2. [Usage - Configuration options and additional functionality](#usage)
 3. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-    * [patchwork](#patchwork)
+    * [patchwork](#patchwork-1)
     * [patchwork::config](#patchworkconfig)
 4. [Limitations - OS compatibility, etc.](#limitations)
 5. [Development - Guide for contributing to the module](#development)
