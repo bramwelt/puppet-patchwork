@@ -79,6 +79,8 @@ describe 'patchwork', :type => 'class' do
         :manage_database => false,
       }}
       it { should_not contain_class('mysql::server') }
+      it { should contain_package('mysql-daemon_dev') }
+      it { should contain_class('mysql::bindings') }
     end
     context 'with unmanaged python' do
       let(:params) {{
