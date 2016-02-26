@@ -25,7 +25,7 @@
 class patchwork::install {
 
   if ($patchwork::manage_git) {
-    class { '::git': }
+    include ::git
   }
 
   if ($patchwork::manage_python) {
@@ -39,7 +39,7 @@ class patchwork::install {
   }
 
   if ($patchwork::manage_database) {
-    class { '::mysql::server': }
+    include ::mysql::server
   }
 
   # Manually install mariadb-devel until mysql module updates with the code
