@@ -125,9 +125,7 @@ Default: `true`
 
 #### `manage_database`
 
-Installs a local MySQL server, the MySQL client bindings for
-python, and the MySQL development libraries which are required by the
-python bindings.
+Installs a local MySQL server.
 
 Default: `true`
 

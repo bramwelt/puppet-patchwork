@@ -40,16 +40,18 @@ class patchwork::install {
 
   if ($patchwork::manage_database) {
     class { '::mysql::server': }
-    # Manually install mariadb-devel until mysql module updates with the code
-    # that fixes this.
-    #class { '::mysql::bindings::daemon_dev': }
-    package { 'mysql-daemon_dev':
-      ensure => 'present',
-      name   => 'mariadb-devel',
-    }
-    class { '::mysql::bindings':
-      python_enable => true,
-    }
+  }
+
+  # Manually install mariadb-devel until mysql module updates with the code
+  # that fixes this.
+  #  include '::mysql::bindings::daemon_dev'
+  package { 'mysql-daemon_dev':
+    ensure => 'present',
+    name   => 'mariadb-devel',
+  }
+  # Install mysql python bindings
+  class { '::mysql::bindings':
+    python_enable => true,
   }
 
   # If 'latest' version is given the repo will track master and keep up
