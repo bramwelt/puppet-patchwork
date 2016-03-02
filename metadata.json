@@ -1,6 +1,6 @@
 {
   "name": "bramwelt-patchwork",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "bramwelt",
   "summary": "Web-based patch tracking system designed to facilitate the contribution and management of contributions to open-source projects",
   "license": "Apache-2.0",
@@ -50,7 +50,7 @@
     },
     {
       "name": "puppet",
-      "version_requirement": ">=3.1.0 <5.0.0"
+      "version_requirement": ">=3.0.0 <5.0.0"
     }
   ]
 }
