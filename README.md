@@ -201,7 +201,10 @@ Default: `10`
 ### patchwork::config
 
 Manages the Django settings.py file. Most parameter are passed directly
-through and interpreted as Python.
+through and interpreted as Python. Because settings.py may contain
+sensitive information,
+[show_diff](https://docs.puppetlabs.com/puppet/latest/reference/type.html#file-attribute-show_diff)
+is disabled for the file.
 
 #### `secret_key`
 
