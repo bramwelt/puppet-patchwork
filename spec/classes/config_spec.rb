@@ -14,7 +14,7 @@ describe 'patchwork::config', :type => 'class' do
            .with_content(/ALLOWED_HOSTS = \(\s+\)/)
     }
   end
-  context 'with defaults for all parameters' do
+  context 'with changes to all parameters' do
     let(:params) {{
       :time_zone => 'US/PST',
       :from_email => '<foo@example.com>',
@@ -31,6 +31,7 @@ describe 'patchwork::config', :type => 'class' do
            .with(
                'owner' => 'patchwork',
                'group' => 'patchwork',
+               'show_diff' => 'false',
             )
            .with_content(/LANGUAGE_CODE = 'fi-SE'/)
            .with_content(/TIME_ZONE = 'US\/PST'/)

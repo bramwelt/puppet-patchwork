@@ -100,11 +100,12 @@ class patchwork::config (
   validate_array($allowed_hosts)
 
   file { "${patchwork::install_dir}/patchwork/settings/production.py":
-    ensure  => file,
-    mode    => '0644',
-    owner   => $patchwork::user,
-    group   => $patchwork::group,
-    content => template("${module_name}/settings.py.erb"),
+    ensure    => file,
+    mode      => '0644',
+    owner     => $patchwork::user,
+    group     => $patchwork::group,
+    content   => template("${module_name}/settings.py.erb"),
+    show_diff => false,
   }
 
   file { "${patchwork::install_dir}/patchwork.wsgi":
