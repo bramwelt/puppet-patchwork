@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'patchwork', :type => 'class' do
   context 'install' do
     context 'with defaults for all parameters' do
-      it { should contain_class('git') } 
-      it { should contain_class('python') } 
-      it { should contain_class('mysql::server') } 
+      it { should contain_class('git') }
+      it { should contain_class('python') }
+      it { should contain_class('mysql::server') }
       # Uncomment this once the mysql module has been updated
       #it { should contain_class('mysql::bindings::daemon_dev') }
       # Remove the following check once mysql has been updated
@@ -19,7 +19,7 @@ describe 'patchwork', :type => 'class' do
         .with({
           'python_enable' => 'true'
         })
-      } 
+      }
       it { should contain_user('patchwork')
            .with({
                'ensure'  => 'present',

@@ -9,12 +9,12 @@
 #
 # [*location*]
 #   Location patchwork should be cloned to.
-#   
+#
 #   Default: '/opt/patchwork'
 #
 # [*virtualenv_path*]
 #   File path to where the virtualenv should live.
-#   
+#
 #   Default: '/opt/patchwork/venv'
 #
 # [*version*]
@@ -43,7 +43,7 @@
 #
 # [*manage_database*]
 #   Flag for installing a local mysql server.
-#   
+#
 #   Default: true
 #
 # [*uwsgi_overrides*]
@@ -59,7 +59,7 @@
 # === Copyright
 #
 # Copyright 2015 Trevor Bramwell
-# 
+#
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
