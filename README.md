@@ -160,11 +160,12 @@ database server.
 
 Default: `'mysql-patchwork'`
 
-#### `uwsgi_options`
+#### `uwsgi_overrides`
 
-Options hash passed to the patchwork uwsgi application.
+Items in the hash will replace the defaults listed in `uwsgi_options` of
+the params class.
 
-Default:
+`patchwork::params::uwsgi_options` is defined as:
 ```puppet
 {
   virtualenv  => '/opt/patchwork/venv',
@@ -178,6 +179,8 @@ Default:
   threads     => 2,
 }
 ```
+
+Default: `{}`
 
 #### `collect_exported`
 

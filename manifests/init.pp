@@ -46,6 +46,12 @@
 #   
 #   Default: true
 #
+# [*uwsgi_overrides*]
+#   Items in the hash will replace the defaults listed in
+#   `uwsgi_options` of the params class.
+#
+#   Default: {}
+#
 # === Authors
 #
 # Trevor Bramwell <tbramwell@linuxfoundation.org>
@@ -82,7 +88,7 @@ class patchwork (
   $database_user     = $patchwork::params::database_user,
   $database_pass     = $patchwork::params::database_pass,
   $database_tag      = $patchwork::params::database_tag,
-  $uwsgi_options     = $patchwork::params::uwsgi_options,
+  $uwsgi_overrides   = {},
   $collect_exported  = $patchwork::params::collect_exported,
   $cron_minutes      = $patchwork::params::cron_minutes,
 ) inherits patchwork::params {
@@ -101,9 +107,11 @@ class patchwork (
   validate_string($database_user)
   validate_string($database_pass)
   validate_string($database_tag)
-  validate_hash($uwsgi_options)
+  validate_hash($uwsgi_overrides)
   validate_bool($collect_exported)
   validate_integer($cron_minutes, 59, 0)
+
+  $uwsgi_config = merge($patchwork::params::uwsgi_options, $uwsgi_overrides)
 
   anchor { 'patchwork:begin': }
   anchor { 'patchwork:end': }

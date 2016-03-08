@@ -37,8 +37,8 @@ class patchwork::uwsgi {
 
   include ::uwsgi
 
-  if (has_key($patchwork::uwsgi_options, 'logto')) {
-    $log_dir = dirname($patchwork::uwsgi_options['logto'])
+  if (has_key($patchwork::uwsgi_config, 'logto')) {
+    $log_dir = dirname($patchwork::uwsgi_config['logto'])
     validate_absolute_path($log_dir)
 
     file { $log_dir:
@@ -52,7 +52,7 @@ class patchwork::uwsgi {
     ensure              => 'present',
     uid                 => $patchwork::user,
     gid                 => $patchwork::group,
-    application_options => $patchwork::uwsgi_options,
+    application_options => $patchwork::uwsgi_config,
   }
 
 }
