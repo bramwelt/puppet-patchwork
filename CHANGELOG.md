@@ -1,5 +1,12 @@
 # Changelog
 
+## 2016-03-08 - v0.2.0
+
+* [#6](https://github.com/bramwelt/puppet-patchwork/pull/6) Allow Overriding of uwsgi Parameters
+
+  * Removes `patchwork::uwsgi_options`
+  * Adds    `patchwork::uwsgi_overrides`
+
 ## 2016-03-02 - v0.1.2
 
 * [#4](https://github.com/bramwelt/puppet-patchwork/pull/4) Disable reporting changes to settings.py

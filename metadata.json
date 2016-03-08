@@ -1,6 +1,6 @@
 {
   "name": "bramwelt-patchwork",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "bramwelt",
   "summary": "Web-based patch tracking system designed to facilitate the contribution and management of contributions to open-source projects",
   "license": "Apache-2.0",
