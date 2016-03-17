@@ -30,7 +30,7 @@ class patchwork::database::mysql {
       user     => $patchwork::database_user,
       password => $patchwork::database_pass,
       dbname   => $patchwork::database_name,
-      host     => $patchwork::database_host,
+      host     => $::ipaddress,
       tag      => $patchwork::database_tag,
     }
   } else {
@@ -38,7 +38,7 @@ class patchwork::database::mysql {
       ensure   => 'present',
       user     => $patchwork::database_user,
       password => $patchwork::database_pass,
-      host     => $patchwork::database_host,
+      host     => $::ipaddress,
     }
   }
 }

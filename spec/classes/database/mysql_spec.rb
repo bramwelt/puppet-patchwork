@@ -10,7 +10,7 @@ describe 'patchwork::database::mysql', :type => 'class' do
              'dbname'   => 'patchwork',
              'user'     => 'patchwork',
              'password' => 'patchwork',
-             'host'     => 'localhost',
+             'host'     => '172.16.32.42',
            }) }
   end
   context 'with exported resourced enabled' do
@@ -22,7 +22,7 @@ describe 'patchwork::database::mysql', :type => 'class' do
              'dbname'   => 'patchwork',
              'user'     => 'patchwork',
              'password' => 'patchwork',
-             'host'     => 'localhost',
+             'host'     => '172.16.32.42',
            }) }
   end
 end

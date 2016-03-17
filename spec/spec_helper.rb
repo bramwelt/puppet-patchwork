@@ -4,7 +4,7 @@ RSpec.configure do |c|
   c.default_facts = {
     :osfamily                  => 'RedHat',
     :operatingsystem           => 'CentOS',
-    :ipaddress                 => '192.168.0.2',
+    :ipaddress                 => '172.16.32.42',
     :operatingsystemmajrelease => '7',
     :fqdn                      => 'patchwork.example.com',
     :hostname                  => 'patchwork',
