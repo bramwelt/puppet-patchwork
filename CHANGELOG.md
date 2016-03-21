@@ -1,5 +1,12 @@
 # Changelog
 
+## 2016-03-21 - v0.2.1
+
+* [#9](https://github.com/bramwelt/puppet-patchwork/pull/9) Create databases using ipaddress for host
+
+  * `patchwork::database_host` only used for Django settings
+  * Resolves [#8](https://github.com/bramwelt/puppet-patchwork/pull/8)
+
 ## 2016-03-08 - v0.2.0
 
 * [#6](https://github.com/bramwelt/puppet-patchwork/pull/6) Allow Overriding of uwsgi Parameters
