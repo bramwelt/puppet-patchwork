@@ -1,5 +1,14 @@
 # Changelog
 
+## 2016-03-22 - v0.2.2
+
+* Bump stankevich-python dependency to at least `1.11.0`
+* Fix testsing issues introduced by bumping the dependencies
+* Fix parameter defaults:
+
+  * `patchwork::user`
+  * `patchwork::group`
+
 ## 2016-03-21 - v0.2.1
 
 * [#9](https://github.com/bramwelt/puppet-patchwork/pull/9) Create databases using ipaddress for host
