@@ -23,4 +23,14 @@ describe 'patchwork', :type => 'class' do
       )
     end
   end
+  context 'with different user and group parameters' do
+      let(:params) {{
+        'user'  => 'random_user',
+        'group' => 'random_group',
+      }}
+      it { should contain_vcsrepo('/opt/patchwork').with(
+        'user'  => 'random_user',
+        'group' => 'random_group',
+      )}
+  end
 end
