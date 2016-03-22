@@ -86,7 +86,15 @@ describe 'patchwork', :type => 'class' do
       let(:params) {{
         :manage_python => false,
       }}
-      it { should_not contain_class('python') }
+      it { should_not contain_class('python')
+        .with({
+          'version'    => 'system',
+          'dev'        => true,
+          'pip'        => true,
+          'virtualenv' => true,
+          'gunicorn'   => false,
+        })
+      }
     end
     context 'with specific patchwork version' do
       let(:params) {{

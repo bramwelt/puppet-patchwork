@@ -6,6 +6,7 @@ RSpec.configure do |c|
     :operatingsystem           => 'CentOS',
     :ipaddress                 => '172.16.32.42',
     :operatingsystemmajrelease => '7',
+    :operatingsystemrelease    => '7.0',
     :fqdn                      => 'patchwork.example.com',
     :hostname                  => 'patchwork',
   }

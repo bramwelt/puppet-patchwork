@@ -1,3 +1,6 @@
 ---
 patchwork::collect_exported: false
 patchwork::install_dir: /opt/patchwork
+
+uwsgi::install_pip: false
+uwsgi::install_python_dev: false
