@@ -6,7 +6,7 @@ fixtures:
     epel: 'stahnma-epel'
     python:
       repo: 'stankevich-python'
-      ref: '1.9.4'
+      ref: '1.11.0'
     mysql: 'puppetlabs-mysql'
     uwsgi:
       repo: 'engage-uwsgi'
