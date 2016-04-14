@@ -37,6 +37,12 @@ describe 'patchwork', :type => 'class' do
           'revision' => 'master',
         })
       }
+      it { should contain_file('/etc/logrotate.d/patchwork')
+        .with({
+          'ensure' => 'file',
+          'source' => 'puppet:///modules/patchwork/logrotate.d/patchwork',
+        })
+      }
       it { should contain_python__virtualenv('/opt/patchwork/venv')
         .with({
           'owner'        => 'patchwork',

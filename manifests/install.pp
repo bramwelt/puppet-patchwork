@@ -92,6 +92,11 @@ class patchwork::install {
     require  => File[$patchwork::install_dir],
   }
 
+  file { '/etc/logrotate.d/patchwork':
+    ensure => 'file',
+    source => 'puppet:///modules/patchwork/logrotate.d/patchwork',
+  }
+
   # Creat a virtualenv and install patchwork's requirements.txt
   python::virtualenv { $patchwork::virtualenv_dir:
     owner   => $patchwork::user,
