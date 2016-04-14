@@ -11,5 +11,6 @@ fixtures:
     uwsgi:
       repo: 'engage-uwsgi'
       ref: '1.2.0'
+    selinux: 'camptocamp-selinux'
   symlinks:
     patchwork: "#{source_dir}"
