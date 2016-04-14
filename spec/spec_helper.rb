@@ -9,6 +9,7 @@ RSpec.configure do |c|
     :operatingsystemrelease    => '7.0',
     :fqdn                      => 'patchwork.example.com',
     :hostname                  => 'patchwork',
+    :path                      => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
     :virtualenv_version        => '1.10.1'
   }
   c.hiera_config = File.expand_path(File.join(__FILE__, '../fixtures/hiera.yaml'))

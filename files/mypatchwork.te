@@ -1,0 +1,15 @@
+module mypatchwork 1.0.2;
+
+require {
+        type httpd_t;
+        type httpd_log_t;
+        type sysctl_net_t;
+        type ldconfig_exec_t;
+        type postfix_pipe_t;
+        class file { getattr execute_no_trans read open execute append };
+}
+
+#============= postfix_pipe_t ==============
+allow postfix_pipe_t ldconfig_exec_t:file { read execute open execute_no_trans };
+allow postfix_pipe_t httpd_log_t:file { getattr open append };
+allow httpd_t sysctl_net_t:file { read open };

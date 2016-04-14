@@ -291,6 +291,29 @@ patchwork should send Email notifications.
 
 Default: `10` - Set by [cron_minutes](#cron_minutes)
 
+### patchwork::selinux
+
+Manages an optional selinux module for Patchwork.
+Expects the class `::selinux::base` to exist. This class is provided by
+the `camptocamp/selinux` module and can be installed by adding:
+
+```
+  mod 'camptocamp-selinux'
+```
+
+to Puppetfile, or running:
+
+```
+puppet module install camptocamp-selinux
+```
+
+#### `module_source`
+
+Location of a patchwork selinux module to override the one provided
+by puppet.
+
+Default: `puppet:///module/patchwork/mypatchwork.te`
+
 ## Limitations
 
 This module has been tested to work with Puppet 4 on the following

@@ -47,4 +47,5 @@ class patchwork::params {
   }
   $collect_exported = false
   $cron_minutes     = 10
+  $selinux_module_source = 'puppet:///modules/patchwork/mypatchwork.te'
 }
