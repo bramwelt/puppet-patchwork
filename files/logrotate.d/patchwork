@@ -1,0 +1,11 @@
+# Patchwork logrotate script
+
+/var/log/patchwork/patchwork.log {
+    weekly
+    rotate 4
+    copytruncate
+    compress
+    delaycompress
+    missingok
+    notifempty
+}
