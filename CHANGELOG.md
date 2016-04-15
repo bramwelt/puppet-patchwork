@@ -1,5 +1,14 @@
 # Changelog
 
+## 2016-04-14 - v0.3.0
+
+* Add `patchwork::selinux` manifest
+* Include logrotate script
+* Add missing `virtualenv_version` fact for tests
+* Enable configuration for XMLRPC in settings.py
+
+  * Adds `patchwork::config::enable_xmlrpc`
+
 ## 2016-03-22 - v0.2.2
 
 * Bump stankevich-python dependency to at least `1.11.0`
