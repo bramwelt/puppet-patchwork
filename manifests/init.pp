@@ -7,13 +7,13 @@
 #
 # === Parameters
 #
-# [*location*]
-#   Location patchwork should be cloned to.
+# [*install_dir*]
+#   The directory where patchwork should be installed.
 #
 #   Default: '/opt/patchwork'
 #
-# [*virtualenv_path*]
-#   File path to where the virtualenv should live.
+# [*virtualenv_dir*]
+#   The directory where the virtualenv should reside.
 #
 #   Default: '/opt/patchwork/venv'
 #
@@ -25,24 +25,36 @@
 #
 #   Default: 'master'
 #
-# [*source_repo*]
-#   The source repo for installing patchwork. As patchwork is not
-#   currently packaged, it must be installed from source.
+# [*user*]
+#   User that owns patchwork files and runs the application.
 #
-#   Default: git://github.com/getpatchwork/patchwork
+#   Default 'patchwork'
+#
+# [*group*]
+#   Group that has access to patchwork files.
+#
+#   Default 'patchwork'
+#
+# [*source_repo*]
+#   git repo URL for cloning patchwork. Useful for installing your own fork
+#   / patched version of patchwork.
+#
+#   Default: 'git://github.com/getpatchwork/patchwork'
 #
 # [*manage_git*]
-#   Flag for installing git.
+#   Installs git. Git is required for cloning patchwork.
 #
 #   Default: true
 #
 # [*manage_python*]
-#   Flag for installing python.
+#   Installs python, python development libraries, pip, and virtualenv.
+#   Required for creating the patchwork virtualenv and installing
+#   patchwork's dependencies.
 #
 #   Default: true
 #
 # [*manage_database*]
-#   Flag for installing a local mysql server.
+#   Installs a local MySQL server.
 #
 #   Default: true
 #
@@ -51,6 +63,55 @@
 #   `uwsgi_options` of the params class.
 #
 #   Default: {}
+#
+# [*database_name*]
+#   The name of the patchwork database.
+#
+#   Default: 'patchwork'
+#
+# [*database_host*]
+#   Database hostname of the client should connect to.
+#
+#   Databases created either through 'patchwork::collect_exported'
+#   or 'patchwork::manage_database' use '$::ipaddress' for the
+#   host.
+#
+#   Default: 'localhost'
+#
+# [*database_user*]
+#   The username for connection to the database.
+#
+#   Default: 'patchwork'
+#
+# [*database_pass*]
+#   The password associated with the database username.
+#
+#   Default: 'patchwork'
+#
+# [*database_tag*]
+#   Exported resource tag to for collecting the database resource onto a
+#   database server.
+#
+#   Default: 'mysql-patchwork'
+#
+# [*collect_exported*]
+#
+#   Changes database definition from a regular resource to an exported
+#   resource and allows for creating the database on another server. Also see:
+#   'patchwork::database_tag'
+#
+#   Default: false
+#
+# [*cron_minutes*]
+#
+#   Patchwork uses a cron script to clean up expired registrations, and send
+#   notifications of patch changes (for projects with this enabled). This
+#   setting defines the number of minutes between patchwork cron job runs.
+#
+#   There is no need to modify 'notification_delay' since
+#   setting 'cron_minutes' will also set 'patchwork::config::notification_delay'.
+#
+#   Default: 10
 #
 # === Authors
 #

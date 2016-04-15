@@ -137,7 +137,11 @@ Default: `'patchwork'`
 
 #### `database_host`
 
-The hostname of the database server.
+Database hostname of the client should connect to.
+
+Databases created either through [collect_exported](#collect_exported)
+or [manage_database](#manage_database) use `$::ipaddress` for the
+host.
 
 Default: `'localhost'`
 
