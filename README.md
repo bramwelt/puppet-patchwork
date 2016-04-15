@@ -291,6 +291,13 @@ patchwork should send Email notifications.
 
 Default: `10` - Set by [cron_minutes](#cron_minutes)
 
+#### `enable_xmlrpc`
+
+Set to True to enable the Patchwork XML-RPC interface. This is needed
+for pwclient usage.
+
+Default: `'False'`
+
 ### patchwork::selinux
 
 Manages an optional selinux module for Patchwork.

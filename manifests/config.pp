@@ -59,6 +59,10 @@
 #   This should be set to the same as `cron_minutes`. Number of minutes
 #   patchwork should send Email notifications.
 #
+# [*enable_xmlrpc*]
+#   Set to True to enable the Patchwork XML-RPC interface. This is needed
+#   for pwclient usage.
+#
 # === Authors
 #
 # Trevor Bramwell <tbramwell@linuxfoundation.org>
@@ -84,6 +88,7 @@ class patchwork::config (
   $time_zone          = 'Etc/UTC',
   $language_code      = 'en_US',
   $patches_per_page   = '100',
+  $enable_xmlrpc      = 'False',
   $force_https_links  = 'False',
   $from_email         = 'Patchwork <patchwork@patchwork.example.com>',
   $admins             = {},
@@ -94,6 +99,7 @@ class patchwork::config (
   validate_string($secret_key)
   validate_string($time_zone)
   validate_string($patches_per_page)
+  validate_string($enable_xmlrpc)
   validate_string($force_https_links)
   validate_string($from_email)
   validate_hash($admins)

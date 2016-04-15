@@ -6,6 +6,7 @@ describe 'patchwork::config', :type => 'class' do
     it { should contain_file('/opt/patchwork/patchwork/settings/production.py')
            .with_content(/LANGUAGE_CODE = 'en_US'/)
            .with_content(/FORCE_HTTPS_LINKS = False/)
+           .with_content(/ENABLE_XMLRPC = False/)
            .with_content(/DEFAULT_PATCHES_PER_PAGE = 10/)
            .with_content(/DEFAULT_FROM_EMAIL = 'Patchwork <patchwork@patchwork.example.com>'/)
            .with_content(/NOTIFICATION_DELAY_MINUTES = 10/)
@@ -23,6 +24,7 @@ describe 'patchwork::config', :type => 'class' do
       :patches_per_page => '80',
       :language_code => 'fi-SE',
       :force_https_links => 'True',
+      :enable_xmlrpc => 'True',
       :admins => {'Patchwork Admin' => 'patchwork@example.com'},
       :allowed_hosts => ['192.168.0.0/24','foo.example.com'],
     }}
@@ -37,6 +39,7 @@ describe 'patchwork::config', :type => 'class' do
            .with_content(/TIME_ZONE = 'US\/PST'/)
            .with_content(/DEFAULT_FROM_EMAIL = '<foo@example.com>'/)
            .with_content(/NOTIFICATION_DELAY_MINUTES = 20/)
+           .with_content(/ENABLE_XMLRPC = True/)
            .with_content(/FORCE_HTTPS_LINKS = True/)
            .with_content(/DEFAULT_PATCHES_PER_PAGE = 80/)
            .with_content(/ADMINS = \(\s+\('Patchwork Admin', 'patchwork@example.com'\),\s\)/)
