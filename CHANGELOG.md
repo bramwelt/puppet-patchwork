@@ -1,5 +1,10 @@
 # Changelog
 
+## 2016-04-19 - v0.3.1
+
+* [#11] (https://github.com/bramwelt/puppet-patchwork/pull/11) Enable
+  searching of httpd\_log\_t directories through selinux policy
+
 ## 2016-04-14 - v0.3.0
 
 * Add `patchwork::selinux` manifest
