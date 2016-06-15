@@ -302,6 +302,40 @@ for pwclient usage.
 
 Default: `'False'`
 
+#### `cache_backend`
+The caching backend to use. Ex:
+
+  * `'django.core.cache.backends.locmem.LocMemCache'`
+  * `'django.core.cache.backends.memcached.MemcachedCache'`
+
+See: [BACKEND](https://docs.djangoproject.com/en/1.8/ref/settings/#backend)
+
+Default: `'django.core.cache.backends.locmem.LocMemCache'`
+
+#### `cache_location`
+A list of strings providing the locations that implement the
+`cache_backend`.
+
+See: [LOCATION](https://docs.djangoproject.com/en/1.8/ref/settings/#location)
+
+Default: `[]`
+
+#### `cache_timeout`
+A string of either 'None' or a positivive integer respresenting the
+TTL of entires. A value of 'None' means cache entries will not expire.
+
+See: [TIMEOUT](https://docs.djangoproject.com/en/1.8/ref/settings/#timeout)
+
+Default: `300`
+
+#### `cache_options`
+Set to True to enable the Patchwork XML-RPC interface. This is needed
+for pwclient usage.
+
+See: [OPTIONS](https://docs.djangoproject.com/en/1.8/ref/settings/#options)
+
+Default: `{}`
+
 ### patchwork::selinux
 
 Manages an optional selinux module for Patchwork.

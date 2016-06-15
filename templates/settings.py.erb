@@ -60,6 +60,35 @@ DATABASES = {
 }
 
 #
+# Caches
+#
+# Cache Settings:
+# https://docs.djangoproject.com/en/1.7/topics/cache/
+
+CACHES = {
+    'default': {
+        'BACKEND': '<%= @cache_backend -%>',
+<%- if @cache_location != [] -%>
+        'LOCATION': [
+        <%- @cache_location.each do |location| -%>
+            '<%= location %>',
+        <%- end -%>
+        ],
+<%- end -%>
+<%- if @cache_timeout != '300' -%>
+        'TIMEOUT': <%= @cache_timeout -%>,
+<%- end -%>
+<%- if @cache_options != {} -%>
+        'OPTIONS': {
+        <%- @cache_options.each do |option, value| -%>
+            '<%= option %>': <%= value %>,
+        <%- end -%>
+        },
+<%- end -%>
+    }
+}
+
+#
 # Static files settings
 # https://docs.djangoproject.com/en/1.7/ref/settings/#static-files
 #
