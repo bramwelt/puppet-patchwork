@@ -1,5 +1,14 @@
 # Changelog
 
+## 2016-06-17 - v0.4.0
+
+* Add Cache Configuration to settings.py
+
+  * `patchwork::config::cache_backend`
+  * `patchwork::config::cache_location`
+  * `patchwork::config::cache_timeout`
+  * `patchwork::config::cache_options`
+
 ## 2016-04-19 - v0.3.1
 
 * [#11] (https://github.com/bramwelt/puppet-patchwork/pull/11) Enable
