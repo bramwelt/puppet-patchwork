@@ -63,6 +63,31 @@
 #   Set to True to enable the Patchwork XML-RPC interface. This is needed
 #   for pwclient usage.
 #
+# [*cache_backend*]
+#   The caching backend to use. Ex:
+#     'django.core.cache.backends.locmem.LocMemCache',
+#     'django.core.cache.backends.memcached.MemcachedCache'
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#backend
+#
+# [*cache_location*]
+#   A list of strings providing the locations that implement the
+#   `cache_backend`.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#location
+#
+# [*cache_timeout*]
+#   A string of either 'None' or a positivive integer respresenting the
+#   TTL of entires. A value of 'None' means cache entries will not expire.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#timeout
+#
+# [*cache_options*]
+#   Set to True to enable the Patchwork XML-RPC interface. This is needed
+#   for pwclient usage.
+#
+#   https://docs.djangoproject.com/en/1.8/ref/settings/#options
+#
 # === Authors
 #
 # Trevor Bramwell <tbramwell@linuxfoundation.org>
@@ -91,6 +116,10 @@ class patchwork::config (
   $enable_xmlrpc      = 'False',
   $force_https_links  = 'False',
   $from_email         = 'Patchwork <patchwork@patchwork.example.com>',
+  $cache_backend      = 'django.core.cache.backends.locmem.LocMemCache',
+  $cache_location     = [],
+  $cache_timeout      = '300',
+  $cache_options      = {},
   $admins             = {},
   $allowed_hosts      = [],
   $notification_delay = $patchwork::cron_minutes,
@@ -101,6 +130,10 @@ class patchwork::config (
   validate_string($patches_per_page)
   validate_string($enable_xmlrpc)
   validate_string($force_https_links)
+  validate_string($cache_backend)
+  validate_array($cache_location)
+  validate_string($cache_timeout) # positive int, or String: 'None'
+  validate_hash($cache_options)
   validate_string($from_email)
   validate_hash($admins)
   validate_array($allowed_hosts)
