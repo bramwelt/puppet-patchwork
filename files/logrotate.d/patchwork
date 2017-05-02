@@ -9,3 +9,13 @@
     missingok
     notifempty
 }
+
+/var/log/patchwork/uwsgi.log {
+    weekly
+    rotate 4
+    copytruncate
+    compress
+    delaycompress
+    missingok
+    notifempty
+}
